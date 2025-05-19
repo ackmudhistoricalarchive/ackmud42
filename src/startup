@@ -28,11 +28,11 @@ do
   do
     logfile=../log/$index.log
     if [ ! -e $logfile ]; then break; fi
-    let index=$index+1
+    index=$((index+1))
   done
 
   # run the mud
-  ../src/merc $port >$logfile 2>&1
+  ../src/ack $port >$logfile 2>&1
 
   # shutdown?
   if [ -e shutdown.txt ]; then

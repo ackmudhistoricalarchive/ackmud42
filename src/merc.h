@@ -3586,7 +3586,7 @@ char *  crypt           args( ( const char *key, const char *salt ) );
 #define NULL_FILE       "/dev/null"     /* To reserve one stream        */
 #define MOB_DIR         "MOBProgs/"     /* MOBProg files                */
 
-#define AREA_LIST       "area.lst"      /* List of areas                */
+#define AREA_LIST       "../area/area.lst"      /* List of areas                */
 
 #define BUG_FILE        "bugs.txt"      /* For 'bug' and bug( )         */
 #define IDEA_FILE       "ideas.txt"     /* For 'idea'                   */
@@ -3595,13 +3595,13 @@ char *  crypt           args( ( const char *key, const char *salt ) );
 /* FIXME: boards.txt in here????? */
 #define SHUTDOWN_FILE   "shutdown.txt"  /* For 'shutdown'               */
 
-#define CLAN_FILE		"clandata.dat" /* stores clan diplomacy data   */
-#define CORPSE_FILE	"corpses.lst"
-#define MARKS_FILE	"roommarks.lst"
-#define BANS_FILE	"bans.lst"
-#define RULERS_FILE	"rulers.lst"
-#define CONTROLS_FILE	"area_controls.lst"
-#define BRANDS_FILE	"brands.lst"
+#define CLAN_FILE	"../data/clandata.dat" /* stores clan diplomacy data   */
+#define CORPSE_FILE	"../data/corpses.lst"
+#define MARKS_FILE	"../data/roommarks.lst"
+#define BANS_FILE	"../data/bans.lst"
+#define RULERS_FILE	"../data/rulers.lst"
+#define CONTROLS_FILE	"../data/area_controls.lst"
+#define BRANDS_FILE	"../data/brands.lst"
 
 #if !defined(WHO_HTML_FILE)
 #define WHO_HTML_FILE   "whofile"  /* for ftping who list to html web page :) */
@@ -3609,7 +3609,7 @@ char *  crypt           args( ( const char *key, const char *salt ) );
 #endif
 /* Other Stuff - Flar */
 #define COPYOVER_FILE	"COPYOVER.TXT"	/* Temp data file used for copyover */
-#define EXE_FILE		"../src/merc"	/* The one that runs the ACK! */
+#define EXE_FILE		"../src/ack"	/* The one that runs the ACK! */
 
 
 /*

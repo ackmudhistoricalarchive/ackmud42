@@ -1,0 +1,21 @@
+[*****] BUG: Save Clan Table: fopen
+[*****] BUG: Could not open socials.txt for reading.
+[*****] BUG: Save Clan Table: fopen
+[*****] BUG: Could not open socials.txt for reading.
+[*****] BUG: Could not open socials.txt for reading.
+[*****] BUG: Load corpse Table: fopen
+[*****] BUG: Load corpse Table: fopen
+[*****] BUG: Load marks Table: fopen
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Load rulers Table: fopen
+[*****] BUG: Load brands Table: fopen
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Load rulers Table: fopen
+[*****] BUG: Load brands Table: fopen
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Load rulers Table: fopen
+[*****] BUG: Load brands Table: fopen
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Load rulers Table: fopen
+[*****] BUG: Load brands Table: fopen
+[*****] BUG: load_quest_object : Invalid object vnum 18182.

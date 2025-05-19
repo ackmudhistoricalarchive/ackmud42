@@ -458,7 +458,8 @@ void boot_db( bool fCopyOver )
 	FILE *fpList;
 
 	send_to_descrips( "Reading Area Files...\n\r" );
-	
+        log_string("Reading area files...");
+
 	if ( ( fpList = fopen( AREA_LIST, "r" ) ) == NULL )
 	{
 	    perror( AREA_LIST );
@@ -470,16 +471,21 @@ void boot_db( bool fCopyOver )
 	    strcpy( strArea, fread_word( fpList ) );
 	    if ( strArea[0] == '$' )
 		break;
-		
+
 	    if ( strArea[0] == '-' )
 	    {
 		fpArea = stdin;
 	    }
 	    else
 	    {
-		if ( ( fpArea = fopen( strArea, "r" ) ) == NULL )
+                char temp[MAX_STRING_LENGTH];
+                strcpy(temp, "../area/");
+                strcat(temp, strArea);
+		if ( ( fpArea = fopen( temp, "r" ) ) == NULL )
 		{
-		    log_string( strArea );
+		    strcpy(temp, "Failed to load ");
+                    strcat(temp, strArea);
+		    log_string(temp);
 		    kill( getpid(), SIGQUIT );
 		}
 	    }

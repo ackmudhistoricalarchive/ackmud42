@@ -32,7 +32,7 @@
 #include <time.h>
 #include "merc.h"
 
-#define SOCIAL_FILE "socials.txt" /* or whatever fits you */
+#define SOCIAL_FILE "../data/socials.txt" /* or whatever fits you */
 /*#define CONST_SOCIAL  */ /* remove this in Step 2 */
 
 int maxSocial; /* max number of socials */
