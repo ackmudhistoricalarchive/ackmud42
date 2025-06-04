@@ -1483,7 +1483,7 @@ An fraction of Aliaser's power floats here.
 He is big and bad.  Don't mess with him.
 ~
 65 136 1000 S
-73 1
+74 1
 0 0 0
 ! 0 0 0 7 0 0 0
 #3701
@@ -1532,7 +1532,7 @@ He looks mean, but you feel comfortable that you can kill him, especially since
 he is leashed up, and you are not.
 ~
 35 0 0 S
-9 0
+8 0
 50 0 0
 ! 0 0 0 7 0 0 0
 #3705
@@ -1544,7 +1544,7 @@ He looks mean, but you feel comfortable that you can kill him, especially since
 he is leashed up, and you are not.
 ~
 163 0 0 S
-8 0
+9 0
 0 0 0
 ! 0 0 0 7 0 0 0
 #3706
@@ -1567,7 +1567,7 @@ An adept of Overlord Kahn is here, contemplating your progress.
 He is big and bad.  Don't mess with him.
 ~
 67 136 1000 S
-79 1
+80 1
 -500 500 500
 ! 0 0 0 7 17416 0 0
 #3709
@@ -1578,7 +1578,7 @@ A gekko is slithering around here.
 The gekko smiles at you, completely harmless!
 ~
 193 0 100 S
-8 0
+7 0
 0 0 0
 ! 0 0 0 7 0 0 0
 #3710
@@ -1611,7 +1611,7 @@ The squirrel looks for a tree to climb here.
 His fur might be worth money.
 ~
 193 0 100 S
-6 0
+7 0
 10 -2 -2
 ! 0 0 0 7 0 0 0
 #3713
@@ -1654,7 +1654,7 @@ Piglet tries to remain on the ground, whilst holding onto a balloon here.
 ~
 ~
 65 0 0 S
-9 0
+8 0
 0 0 0
 ! 0 0 0 7 0 0 0
 #3717
@@ -1665,7 +1665,7 @@ An adept of Frag is here, grinning and selling you things.
 He is big and bad.  Don't mess with him.
 ~
 67 136 1000 S
-73 1
+74 1
 0 0 0
 ! 0 0 0 7 0 0 0
 #3718
@@ -1676,7 +1676,7 @@ The Adept of Furey is here, waiting to help you.
 He is big and bad.  Don't mess with him.
 ~
 1603 136 1000 S
-78 1
+77 1
 -500 500 500
 ! 0 0 0 7 0 0 0
 #3719
@@ -1687,7 +1687,7 @@ The priest of Hatchet is ready to help you practice.
 He is big and bad.  Don't mess with him.
 ~
 1049667 136 1000 S
-110 1
+109 1
 -500 500 500
 ! 0 0 0 7 26504 0 0
 #3720
@@ -1759,11 +1759,11 @@ You see a sub issue dagger that has been dropped here.
 0 2 3 11
 1
 A
-17 -5
+17 -50
 A
-18 1
+18 20
 A
-19 1
+19 20
 E
 dagger~
 You see a dagger of great but cheap craftsmanship.  Imprinted on the side is:

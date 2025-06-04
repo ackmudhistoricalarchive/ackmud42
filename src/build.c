@@ -184,7 +184,7 @@ const   struct  cmd_type        build_cmd_table   [] =
 /*    { "setroom",        build_setroom,  POS_STANDING,   0,  LOG_NORMAL }, */
 /*    { "setobj",         build_setobject,POS_STANDING,   0,  LOG_NORMAL }, */
     { "setarea",        build_setarea,  POS_STANDING,MAX_LEVEL-1,LOG_NORMAL },
-/*    { "areasave",       do_savearea,    POS_STANDING,   0,  LOG_ALWAYS }, */
+    { "areasave",       do_savearea,    POS_STANDING,   0,  LOG_ALWAYS },
     { "stop",           build_stop,     POS_STANDING,   0,  LOG_ALWAYS },
     { "dig",            build_dig,      POS_STANDING,   0,  LOG_NORMAL },
     { "addarea",        build_makearea,  POS_STANDING,MAX_LEVEL-1,LOG_NORMAL },
