@@ -5282,3 +5282,386 @@
 [*****] BUG: load_quest_object : Invalid object vnum 18187.
 [*****] BUG: load_quest_object : Invalid object vnum 18182.
 [*****] BUG: load_quest_object : Invalid object vnum 18192.
+[*****] BUG: load_quest_object : Invalid object vnum 18185.
+[*****] BUG: load_quest_object : Invalid object vnum 18185.
+[*****] BUG: load_quest_object : Invalid object vnum 18184.
+[*****] BUG: load_quest_object : Invalid object vnum 18190.
+[*****] BUG: load_quest_object : Invalid object vnum 18189.
+[*****] BUG: load_quest_object : Invalid object vnum 18187.
+[*****] BUG: load_quest_object : Invalid object vnum 18187.
+[*****] BUG: load_quest_object : Invalid object vnum 18185.
+[*****] BUG: load_quest_object : Invalid object vnum 18189.
+[*****] BUG: load_quest_object : Invalid object vnum 18192.
+[*****] BUG: Load_rooms: vnum 16884 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16883 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16872 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16871 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16870 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16869 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16868 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16867 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16866 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16848 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16847 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16846 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16845 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16844 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16843 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16842 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16841 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16840 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16828 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16827 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16826 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16817 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16816 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16815 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16804 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16803 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16802 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16801 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16800 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16805 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16806 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16807 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16808 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16809 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16810 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16811 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16812 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16813 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16814 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16818 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16819 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16820 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16821 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16822 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16823 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16824 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16825 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16849 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16850 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16851 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16852 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16853 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16854 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16855 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16856 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16857 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16858 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16829 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16830 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16831 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16832 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16833 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16834 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16835 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16836 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16837 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16838 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16839 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16859 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16860 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16861 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16862 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16863 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16864 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16865 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16873 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16874 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16875 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16876 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16877 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16878 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16879 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16880 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16881 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16882 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16885 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16886 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16887 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16888 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16889 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16890 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16891 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16892 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16893 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16894 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16895 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16896 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16897 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16898 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_rooms: vnum 16899 duplicated.
+[*****] BUG: Loading Rooms in db.c
+[*****] BUG: Load_mobiles: vnum 16881 duplicated.
+[*****] BUG: Loading Mobiles in db.c
+[*****] BUG: Load_mobiles: vnum 16868 duplicated.
+[*****] BUG: Loading Mobiles in db.c
+[*****] BUG: Load_mobiles: vnum 16856 duplicated.
+[*****] BUG: Loading Mobiles in db.c
+[*****] BUG: Load_mobiles: vnum 16848 duplicated.
+[*****] BUG: Loading Mobiles in db.c
+[*****] BUG: Load_mobiles: vnum 16843 duplicated.
+[*****] BUG: Loading Mobiles in db.c
+[*****] BUG: Load_mobiles: vnum 16819 duplicated.
+[*****] BUG: Loading Mobiles in db.c
+[*****] BUG: Load_mobiles: vnum 16817 duplicated.
+[*****] BUG: Loading Mobiles in db.c
+[*****] BUG: Load_mobiles: vnum 16816 duplicated.
+[*****] BUG: Loading Mobiles in db.c
+[*****] BUG: Load_mobiles: vnum 16815 duplicated.
+[*****] BUG: Loading Mobiles in db.c
+[*****] BUG: Load_mobiles: vnum 16813 duplicated.
+[*****] BUG: Loading Mobiles in db.c
+[*****] BUG: Load_mobiles: vnum 16804 duplicated.
+[*****] BUG: Loading Mobiles in db.c
+[*****] BUG: Load_mobiles: vnum 16809 duplicated.
+[*****] BUG: Loading Mobiles in db.c
+[*****] BUG: Load_mobiles: vnum 16811 duplicated.
+[*****] BUG: Loading Mobiles in db.c
+[*****] BUG: Load_mobiles: vnum 16821 duplicated.
+[*****] BUG: Loading Mobiles in db.c
+[*****] BUG: Load_mobiles: vnum 16825 duplicated.
+[*****] BUG: Loading Mobiles in db.c
+[*****] BUG: Load_mobiles: vnum 16851 duplicated.
+[*****] BUG: Loading Mobiles in db.c
+[*****] BUG: Load_mobiles: vnum 16852 duplicated.
+[*****] BUG: Loading Mobiles in db.c
+[*****] BUG: Load_mobiles: vnum 16857 duplicated.
+[*****] BUG: Loading Mobiles in db.c
+[*****] BUG: Load_mobiles: vnum 16802 duplicated.
+[*****] BUG: Loading Mobiles in db.c
+[*****] BUG: Load_mobiles: vnum 16882 duplicated.
+[*****] BUG: Loading Mobiles in db.c
+[*****] BUG: Load_mobiles: vnum 16800 duplicated.
+[*****] BUG: Loading Mobiles in db.c
+[*****] BUG: Load_mobiles: vnum 16801 duplicated.
+[*****] BUG: Loading Mobiles in db.c
+[*****] BUG: Load_mobiles: vnum 16803 duplicated.
+[*****] BUG: Loading Mobiles in db.c
+[*****] BUG: Load_mobiles: vnum 16805 duplicated.
+[*****] BUG: Loading Mobiles in db.c
+[*****] BUG: Load_mobiles: vnum 16806 duplicated.
+[*****] BUG: Loading Mobiles in db.c
+[*****] BUG: Load_mobiles: vnum 16807 duplicated.
+[*****] BUG: Loading Mobiles in db.c
+[*****] BUG: Load_mobiles: vnum 16808 duplicated.
+[*****] BUG: Loading Mobiles in db.c
+[*****] BUG: Load_mobiles: vnum 16810 duplicated.
+[*****] BUG: Loading Mobiles in db.c
+[*****] BUG: Load_objects: vnum 16882 duplicated.
+[*****] BUG: Loading Objects in db.c
+[*****] BUG: Load_objects: vnum 16881 duplicated.
+[*****] BUG: Loading Objects in db.c
+[*****] BUG: Load_objects: vnum 16866 duplicated.
+[*****] BUG: Loading Objects in db.c
+[*****] BUG: Load_objects: vnum 16867 duplicated.
+[*****] BUG: Loading Objects in db.c
+[*****] BUG: Load_objects: vnum 16868 duplicated.
+[*****] BUG: Loading Objects in db.c
+[*****] BUG: Load_objects: vnum 16805 duplicated.
+[*****] BUG: Loading Objects in db.c
+[*****] BUG: Load_objects: vnum 16803 duplicated.
+[*****] BUG: Loading Objects in db.c
+[*****] BUG: Load_objects: vnum 16802 duplicated.
+[*****] BUG: Loading Objects in db.c
+[*****] BUG: Load_objects: vnum 16801 duplicated.
+[*****] BUG: Loading Objects in db.c
+[*****] BUG: Load_objects: vnum 16846 duplicated.
+[*****] BUG: Loading Objects in db.c
+[*****] BUG: Load_objects: vnum 16848 duplicated.
+[*****] BUG: Loading Objects in db.c
+[*****] BUG: Load_objects: vnum 16819 duplicated.
+[*****] BUG: Loading Objects in db.c
+[*****] BUG: Load_objects: vnum 16816 duplicated.
+[*****] BUG: Loading Objects in db.c
+[*****] BUG: Load_objects: vnum 16817 duplicated.
+[*****] BUG: Loading Objects in db.c
+[*****] BUG: Load_objects: vnum 16815 duplicated.
+[*****] BUG: Loading Objects in db.c
+[*****] BUG: Load_objects: vnum 16813 duplicated.
+[*****] BUG: Loading Objects in db.c
+[*****] BUG: Load_objects: vnum 16809 duplicated.
+[*****] BUG: Loading Objects in db.c
+[*****] BUG: Load_objects: vnum 16804 duplicated.
+[*****] BUG: Loading Objects in db.c
+[*****] BUG: Load_objects: vnum 16808 duplicated.
+[*****] BUG: Loading Objects in db.c
+[*****] BUG: Load_objects: vnum 16811 duplicated.
+[*****] BUG: Loading Objects in db.c
+[*****] BUG: Load_objects: vnum 16812 duplicated.
+[*****] BUG: Loading Objects in db.c
+[*****] BUG: Load_objects: vnum 16810 duplicated.
+[*****] BUG: Loading Objects in db.c
+[*****] BUG: Load_objects: vnum 16814 duplicated.
+[*****] BUG: Loading Objects in db.c
+[*****] BUG: Load_objects: vnum 16800 duplicated.
+[*****] BUG: Loading Objects in db.c
+[*****] BUG: Load_objects: vnum 16821 duplicated.
+[*****] BUG: Loading Objects in db.c
+[*****] BUG: Load_objects: vnum 16825 duplicated.
+[*****] BUG: Loading Objects in db.c
+[*****] BUG: Load_objects: vnum 16824 duplicated.
+[*****] BUG: Loading Objects in db.c
+[*****] BUG: Load_objects: vnum 16823 duplicated.
+[*****] BUG: Loading Objects in db.c
+[*****] BUG: Load_objects: vnum 16849 duplicated.
+[*****] BUG: Loading Objects in db.c
+[*****] BUG: Load_objects: vnum 16847 duplicated.
+[*****] BUG: Loading Objects in db.c
+[*****] BUG: Load_objects: vnum 16806 duplicated.
+[*****] BUG: Loading Objects in db.c
+[*****] BUG: Load_objects: vnum 16807 duplicated.
+[*****] BUG: Loading Objects in db.c
+[*****] BUG: Load_objects: vnum 16818 duplicated.
+[*****] BUG: Loading Objects in db.c
+[*****] BUG: Load_objects: vnum 16820 duplicated.
+[*****] BUG: Loading Objects in db.c
+[*****] BUG: Load_objects: vnum 16822 duplicated.
+[*****] BUG: Loading Objects in db.c
+[*****] BUG: Load_objects: vnum 16826 duplicated.
+[*****] BUG: Loading Objects in db.c
+[*****] BUG: Load_objects: vnum 16827 duplicated.
+[*****] BUG: Loading Objects in db.c
+[*****] BUG: Load_objects: vnum 16828 duplicated.
+[*****] BUG: Loading Objects in db.c
+[*****] BUG: Load_objects: vnum 16829 duplicated.
+[*****] BUG: Loading Objects in db.c
+[*****] BUG: Load_objects: vnum 16830 duplicated.
+[*****] BUG: Loading Objects in db.c
+[*****] BUG: Load_objects: vnum 16831 duplicated.
+[*****] BUG: Loading Objects in db.c
+[*****] BUG: Load_objects: vnum 16832 duplicated.
+[*****] BUG: Loading Objects in db.c
+[*****] BUG: Bad exit vnum 0 in room 9251
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: failed open of bans_table.dat in load_bans_table
+[*****] BUG: Load rulers Table: fopen
+[*****] BUG: failed open of rulers_table.dat in load_rulers_table
+[*****] BUG: Loading ../data/brands.lst
+
+[*****] BUG: Load brands Table: fopen
+[*****] BUG: failed open of brands_table.dat in load_brands_table
+[*****] BUG: load_quest_object : Invalid object vnum 18187.
+[*****] BUG: Bad exit vnum 0 in room 9251
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: failed open of bans_table.dat in load_bans_table
+[*****] BUG: Load rulers Table: fopen
+[*****] BUG: failed open of rulers_table.dat in load_rulers_table
+[*****] BUG: Loading ../data/brands.lst
+
+[*****] BUG: Load brands Table: fopen
+[*****] BUG: failed open of brands_table.dat in load_brands_table
+[*****] BUG: load_quest_object : Invalid object vnum 18183.
+[*****] BUG: load_quest_object : Invalid object vnum 18191.
+[*****] BUG: load_quest_object : Invalid object vnum 18184.
+[*****] BUG: load_quest_object : Invalid object vnum 18191.
+[*****] BUG: load_quest_object : Invalid object vnum 18182.
+[*****] BUG: load_quest_object : Invalid object vnum 18185.
+[*****] BUG: load_quest_object : Invalid object vnum 18186.
+[*****] BUG: load_quest_object : Invalid object vnum 18181.
+[*****] BUG: load_quest_object : Invalid object vnum 18185.
+[*****] BUG: load_quest_object : Invalid object vnum 18188.
+[*****] BUG: load_quest_object : Invalid object vnum 18188.
+[*****] BUG: load_quest_object : Invalid object vnum 18181.
+[*****] BUG: load_quest_object : Invalid object vnum 18182.
+[*****] BUG: load_quest_object : Invalid object vnum 18189.

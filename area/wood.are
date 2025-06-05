@@ -274,6 +274,10 @@ A clearing.~
 You come to the end of the path and emerge into a sunlit clearing. Rabbits flit from bush to bush, and you can hear birds singing. An idyllic scene. 
 ~
 0 3
+D0
+~
+~
+0 -1 9261
 D1
 ~
 ~
@@ -308,7 +312,10 @@ D0
 S
 #7325
 Caramon's Folly.~
-Here is a secluded area, with the signs of recent battle not hard to detect. There are dead bodies strewn about here, peppered with arrows, some human in appearance, and some, well not so human. One individual doesnt seem to have given up his life yet.
+Here is a secluded area, with the signs of recent battle not hard to detect.
+There are dead bodies strewn about here, peppered with arrows, some human in
+appearance, and some, well not so human. One individual doesnt seem to have
+given up his life yet.
 ~
 0 3
 D2
@@ -734,7 +741,7 @@ The Guinea-pig guardian of the burrow awaits death here.
 ~
 ~
 131091 535168 0 S
-80 1
+81 1
 0 100 50
 ! 0 0 0 7 0 0 0
 #7307
@@ -813,7 +820,7 @@ The ghost of the dead adventurer rises from the ground and attacks!
 ~
 ~
 35 0 -50 S
-31 1
+30 1
 0 0 0
 ! 0 0 0 7 2 0 0
 #7309

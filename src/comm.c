@@ -3247,9 +3247,6 @@ void do_hotreboot (CHAR_DATA *ch, char * argument)
 	
 	fclose (fpReserve);
 	
-#ifdef IMC
-   imc_hotboot();
-#endif
 
 	/* exec - descriptors are inherited */
 	
@@ -3263,14 +3260,7 @@ void do_hotreboot (CHAR_DATA *ch, char * argument)
  	signal(SIGPROF, SIG_IGN);
  #endif
 
-#ifdef IMC
-   if( this_imcmud )
-      snprintf( buf3, 100, "%d", this_imcmud->desc );
-   else
-      strncpy( buf3, "-1", 100 );
-#else
    strncpy( buf3, "-1", 100 );
-#endif
 
 	execl (EXE_FILE, "ACK! MUD", buf, "HOTreboot", buf2, buf3, (char *) NULL);
 

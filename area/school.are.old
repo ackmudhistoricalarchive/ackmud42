@@ -12,7 +12,6 @@ O hatchet~
 R hatchet aliaser~
 W hatchet cyberlich thrakhath aliaser~
 T You can teleport into here
-S Title not shown on area list.
 M No bad room spells allowed.
 #ROOMS
 #3700
@@ -1483,7 +1482,7 @@ An fraction of Aliaser's power floats here.
 He is big and bad.  Don't mess with him.
 ~
 65 136 1000 S
-74 1
+75 1
 0 0 0
 ! 0 0 0 7 0 0 0
 #3701
@@ -1508,7 +1507,7 @@ He looks mean, but you feel comfortable that you can kill him, especially since
 he is leashed up, and you are not.
 ~
 3 0 0 S
-7 0
+6 0
 50 0 0
 ! 0 0 0 7 0 0 0
 #3703
@@ -1532,7 +1531,7 @@ He looks mean, but you feel comfortable that you can kill him, especially since
 he is leashed up, and you are not.
 ~
 35 0 0 S
-8 0
+9 0
 50 0 0
 ! 0 0 0 7 0 0 0
 #3705
@@ -1567,7 +1566,7 @@ An adept of Overlord Kahn is here, contemplating your progress.
 He is big and bad.  Don't mess with him.
 ~
 67 136 1000 S
-80 1
+79 1
 -500 500 500
 ! 0 0 0 7 17416 0 0
 #3709
@@ -1578,7 +1577,7 @@ A gekko is slithering around here.
 The gekko smiles at you, completely harmless!
 ~
 193 0 100 S
-7 0
+6 0
 0 0 0
 ! 0 0 0 7 0 0 0
 #3710
@@ -1589,7 +1588,7 @@ The newt tries to find water here.
 It smiles at you, and tries to eat your leg.
 ~
 65 0 -100 S
-1 0
+2 0
 0 0 0
 ! 0 0 0 7 0 0 0
 #3711
@@ -1600,7 +1599,7 @@ The badger roots around for food here.
 It grunts at you.
 ~
 65 0 0 S
-7 0
+6 0
 0 0 0
 ! 0 0 0 7 0 0 0
 #3712
@@ -1611,7 +1610,7 @@ The squirrel looks for a tree to climb here.
 His fur might be worth money.
 ~
 193 0 100 S
-7 0
+6 0
 10 -2 -2
 ! 0 0 0 7 0 0 0
 #3713
@@ -1622,7 +1621,7 @@ A slug squeltches around here, waiting to be trod on.
 You don't see much but slime about it.
 ~
 65 0 0 S
-5 0
+4 0
 0 0 0
 ! 0 0 0 7 0 0 0
 #3714
@@ -1633,7 +1632,7 @@ Eeyore the donkey is in a _seriously_ bad mood.
 It looks mean.  You'd better run.
 ~
 97 0 0 S
-6 0
+5 0
 0 0 0
 ! 0 0 0 7 0 0 0
 #3715
@@ -1654,7 +1653,7 @@ Piglet tries to remain on the ground, whilst holding onto a balloon here.
 ~
 ~
 65 0 0 S
-8 0
+9 0
 0 0 0
 ! 0 0 0 7 0 0 0
 #3717
@@ -1676,7 +1675,7 @@ The Adept of Furey is here, waiting to help you.
 He is big and bad.  Don't mess with him.
 ~
 1603 136 1000 S
-77 1
+76 1
 -500 500 500
 ! 0 0 0 7 0 0 0
 #3719
@@ -1699,7 +1698,7 @@ This horrible creature is your final test for mud school.  Kill him, and the
 diploma is yours.
 ~
 3 512 0 S
-10 0
+11 0
 0 0 0
 ! 0 0 0 7 0 0 0
 #3721
@@ -1710,7 +1709,7 @@ A newbie Squire stands here, dropping equipment all over the place.
 ~
 ~
 3 553 0 S
-3 1
+2 1
 0 0 0
 ! 1 0 0 7 0 0 0
 #0
