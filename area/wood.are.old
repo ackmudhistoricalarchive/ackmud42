@@ -274,10 +274,10 @@ A clearing.~
 You come to the end of the path and emerge into a sunlit clearing. Rabbits flit from bush to bush, and you can hear birds singing. An idyllic scene. 
 ~
 0 3
-D0
+D1
 ~
-door~
-1 3 9251
+~
+0 -1 16899
 D3
 ~
 ~
@@ -507,8 +507,13 @@ D3
 S
 #7310
 A dead-end in the forest.~
-~
+To the north, you can see the a little bit of snow obstructing the path.
+~
 0 3
+D0
+~
+snow snowy path~
+1 -1 30000
 D3
 ~
 ~
@@ -614,6 +619,10 @@ D2
 ~
 ~
 0 -1 7304
+D5
+~
+hole~
+1 -1 11086
 S
 #7302
 A dark path.~
@@ -725,7 +734,7 @@ The Guinea-pig guardian of the burrow awaits death here.
 ~
 ~
 131091 535168 0 S
-81 1
+80 1
 0 100 50
 ! 0 0 0 7 0 0 0
 #7307
@@ -735,7 +744,7 @@ The sacred holy ram lies here, sleeping and unaware.
 ~
 ~
 3 657408 0 S
-8 1
+9 1
 0 0 0
 ! 0 0 0 7 0 0 0
 #7306
@@ -784,7 +793,7 @@ A rotting tree approaches you.
 ~
 ~
 1 0 -100 S
-12 1
+13 1
 -10 1 0
 ! 0 0 0 7 0 0 0
 #7301
@@ -794,7 +803,7 @@ A nasty vicious wolverine is rooting for food here.
 ~
 ~
 3 0 0 S
-38 1
+39 1
 -40 15 25
 ! 0 0 0 7 16644 0 0
 #7300
@@ -804,7 +813,7 @@ The ghost of the dead adventurer rises from the ground and attacks!
 ~
 ~
 35 0 -50 S
-30 1
+31 1
 0 0 0
 ! 0 0 0 7 2 0 0
 #7309
@@ -814,7 +823,7 @@ A Strange cat lies here doing conjuring tricks.
 ~
 ~
 133651 1081474 0 S
-80 1
+81 1
 0 0 0
 ! 0 0 0 7 0 0 0
 #0

@@ -145,10 +145,10 @@ Pathway to adventure~
 A long winding path that leads slowly onwards off into the distance.
 ~
 0 1
-D2
+D1
 ~
-door~
-1 -1 7328
+path pathway~
+1 -1 0
 S
 #9250
 Outside the South Gate of Evermeet~
@@ -1148,7 +1148,7 @@ The impassive gate guard stands here.
 ~
 ~
 7 32776 -100 S
-54 1
+53 1
 -500 120 110
 ! 0 0 0 7 0 0 0
 #9220
@@ -1158,7 +1158,7 @@ The guard captain of the elite squadron polishes his boots nonchalantly here.
 ~
 ~
 21102721 533120 100 S
-66 1
+67 1
 -690 199 223
 ! 0 0 0 7 7684 0 0
 #9219
@@ -1168,7 +1168,7 @@ The impassive Elite guard stands here, looming over you.
 ~
 ~
 87 8872 -1 S
-65 1
+66 1
 -40 40 40
 ! 0 0 0 7 0 0 0
 #9218
@@ -1178,7 +1178,7 @@ The beautifully radiant Queen Amlariul sits here lost in thought.
 ~
 ~
 3 680 -1 S
-80 2
+81 2
 -1400 400 400
 ! 0 0 0 7 24078 0 16
 #9217
@@ -1198,7 +1198,7 @@ The serenely graceful Elven guards patrol here.
 ~
 ~
 197 8832 -1 S
-34 1
+35 1
 -25 20 20
 ! 0 0 0 7 0 0 0
 #9215
@@ -1208,7 +1208,7 @@ Amylla Goldeneyes bakes her way through the day's order here.
 ~
 ~
 131 35368 -1 S
-71 2
+70 2
 -1400 400 400
 ! 0 0 0 7 24076 0 16
 #9213
@@ -1246,7 +1246,7 @@ This quiet, silver-haired elf with his deep set eyes and an expression of
 life.
 ~
 131083 10984 0 S
-108 1
+107 1
 -1000 527 527
 ! 0 0 0 7 6158 0 0
 #9206
@@ -1259,7 +1259,7 @@ The honorable elf before you would rather die than cheat a customer of his
 leads that has him practically chained to the bank.
 ~
 32771 8872 0 S
-82 1
+83 1
 -1300 400 400
 ! 3 0 0 7 398 0 0
 #9205
@@ -1286,7 +1286,7 @@ Rushing up to you the moment you walked in the door, it's almost as if he was
 get his delicate designer feelings hurt with the slightest frown.
 ~
 8388611 10912 0 S
-140 1
+141 1
 -1400 400 400
 ! 0 0 0 7 30 0 16
 #9202
@@ -1336,7 +1336,7 @@ This handsome elf looks as if he's tired of being cooped up in this tiny shop.
 around. Maybe it is time he got a partner for the store?
 ~
 1048579 10912 0 S
-139 1
+138 1
 -1300 400 500
 ! 3 0 0 7 142 0 0
 #9210
@@ -1349,7 +1349,7 @@ A tall, thin elf stands before you. He looks slightly bored, as if it has been
 various food items he has brought in today.
 ~
 3 2720 0 S
-140 1
+141 1
 -1400 400 400
 ! 0 0 0 7 24076 0 0
 #9211
@@ -1389,7 +1389,7 @@ Tall and slender and graceful, this lady has a piercing glare about her, I
 wouldnt mess if I were you.
 ~
 1539 2720 -1 S
-77 2
+76 2
 -1400 400 400
 ! 0 0 0 7 24078 0 16
 #9222
@@ -1991,8 +1991,6 @@ E 0 9203 0 13 (null)
 E 0 9202 0 5 (null)
 
 E 0 9201 0 8 (null)
-
-D 0 9251 2 1 (null)
 
 O 0 9288 0 9200 (null)
 

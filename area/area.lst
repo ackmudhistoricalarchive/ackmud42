@@ -4,6 +4,19 @@ utility.are
 farstrid.are
 hero1.are
 asylum_grounds.are
+asylum_inside.are
+asylum_lower.are
+graveyard.are
+crimson_mist.are
+crimson_castle.are
+minokeep.are
+pecortan.are
+vecna_tomb.are
+microcosm.are
+micro_mob_generator.are
+maze_of_icarus.are
+warcamp.are
+garmaine.are
 immort.are
 players.are
 midgaard.are
@@ -14,7 +27,6 @@ school.are
 ethereal
 puppet.are
 enchant-eq.are
-hawktest.are
 isle.are
 gnome.are
 jennluansol

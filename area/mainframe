@@ -828,7 +828,7 @@ This is where the executions of criminals takes place.  A large masked
 smashed into a bloody pulp. To the east lies town square and west is a large
 black Monolith.
 ~
-8 0
+8 6
 D1
 ~
 ~
@@ -1646,7 +1646,7 @@ Smith the weaponsmith is standing here!
 ~
 ~
 8388611 8360 0 S
-102 1
+103 1
 -500 500 500
 ! 7 0 0 7 0 0 0
 #9023
@@ -1656,7 +1656,7 @@ Gabe is standing here waiting to sell you something!
 ~
 ~
 8388611 8360 0 S
-94 1
+95 1
 -500 500 500
 ! 3 0 0 7 14 0 0
 #9022
@@ -1706,7 +1706,7 @@ He is the leader of the SU.
  
 ~
 3 4 500 S
-22 1
+21 1
 -40 15 10
 ! 3 0 0 7 6146 0 0
 #9018
@@ -1746,7 +1746,7 @@ This guard is one of the elite of the black watchman.  His sole purpose is go
  
 ~
 67 0 0 S
-16 1
+15 1
 -20 15 18
 ! 3 0 0 7 98 0 0
 #9014
@@ -1773,7 +1773,7 @@ She is very petit with long blond hair.  Her eyes burn you like fire and seem
 of Mouse's lovers.
 ~
 8390147 168 0 S
-75 2
+76 2
 -100 100 350
 ! 2 0 0 7 31112 0 0
 #9001
@@ -1784,7 +1784,7 @@ Ramgul is the lord of these alley's.  He may not be too tough, but his
 intelligence brings death to his foes.
 ~
 8195 65538 -280 S
-9 1
+10 1
 -10 8 10
 ! 2 0 0 7 4096 0 0
 #9017
@@ -1793,7 +1793,7 @@ pkiller hunter~
 ~
 ~
 20054045 1633020 0 S
-123 1
+122 1
 -2000 1000 1000
 ! 3 0 0 7 420346 16384 16
 #9003
@@ -1815,7 +1815,7 @@ Kazmar trains you in the way of spellcasting.~
 All you see is someone in a dark black robe!
 ~
 8390147 524456 0 S
-90 1
+91 1
 -100 100 350
 ! 0 0 0 7 0 0 0
 #9005
@@ -1857,7 +1857,7 @@ Brad will send and give you mail.~
 He is just the guy who handles the post.
 ~
 8912899 0 0 S
-87 1
+86 1
 -100 100 100
 ! 1 0 0 7 0 0 0
 #9009
@@ -1882,7 +1882,7 @@ He seems like a normal man, but he has a very evil grin on his face.  Better
  
 ~
 65 0 0 S
-11 1
+10 1
 0 0 0
 ! 2 0 0 7 0 0 0
 #9011
@@ -1932,7 +1932,7 @@ Joe the baker sells his goods!
 ~
 ~
 8388611 8360 0 S
-96 1
+95 1
 -500 500 500
 ! 4 0 0 7 0 0 0
 #9000
@@ -1942,7 +1942,7 @@ guardian~
 ~
 ~
 2250879 59640 -1000 S
-140 1
+141 1
 -2500 1000 1000
 ! 0 0 0 7 958592 17334468 32
 #0

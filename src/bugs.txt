@@ -54,3 +54,5 @@
 
 [*****] BUG: Load brands Table: fopen
 [*****] BUG: failed open of brands_table.dat in load_brands_table
+[*****] BUG: Fread_number: looking for a digit, found a L.
+[*****] BUG: Error in fread_number

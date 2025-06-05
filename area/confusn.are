@@ -2294,6 +2294,10 @@ You are in a large glade within this strange forest.  It appears that the trees
 @@dTo the north, you can faintly here the sounds of a hammer striking wood.@@N
 ~
 0 3
+D0
+~
+~
+0 -1 6601
 D2
 The Glade.
 ~
@@ -3169,7 +3173,7 @@ This catrat is an adult female.  Catrats are a cross between a cat and a rat,
 as their name suggests.  Needless to say, they are most ugly.
 ~
 143 0 -300 S
-11 1
+12 1
 0 0 0
 ! 0 0 0 7 2 0 0
 #9603
@@ -3193,7 +3197,7 @@ The Hippocampus is a cross between a horse and a fish.  It's front hooves are
 replaced by webbed feet, and the rear half is a silver, scaled tail.
 ~
 3 524288 300 S
-25 2
+26 2
 -20 10 10
 ! 0 0 0 7 2050 0 0
 #9605
@@ -3206,7 +3210,7 @@ Neogi are a cross between a moray eel and a spider.  They have short, furry,
 managed to reach the level of master, and has therefore been mastered itself.
 ~
 19 0 -200 S
-19 0
+18 0
 0 0 0
 ! 0 0 0 7 2 0 0
 #9606
@@ -3219,7 +3223,7 @@ Neogi are a cross between a moray eel and a spider.  They have short, furry,
 managed to reach the level of master, and has therefore been mastered itself.
 ~
 19 0 -200 S
-15 0
+16 0
 0 0 0
 ! 0 0 0 7 2 0 0
 #9607
@@ -3232,7 +3236,7 @@ Neogi are a cross between a moray eel and a spider.  They have short, furry,
 of master, and is in charge of making sure the slaves do their work.
 ~
 19 0 -300 S
-17 0
+16 0
 -10 10 10
 ! 0 0 0 7 2 0 0
 #9608
@@ -3259,7 +3263,7 @@ Neogi are a cross between a moray eel and a spider.  They have short, furry,
 rank in the mine, answering only to the Ruler itself.
 ~
 19 0 -200 S
-18 0
+17 0
 -10 10 10
 ! 0 0 0 7 2 0 0
 #9610
@@ -3283,7 +3287,7 @@ The cocaktrice is a strange mix of lizard, cock and bat.  It seems to ignore
 you as it goes about its task of looking for small insects.
 ~
 65 524800 -25 S
-23 2
+24 2
 -15 10 10
 ! 0 0 0 7 258 0 0
 #9612
@@ -3295,7 +3299,7 @@ The broken one is a tragic survivor of a magical experiment to try and
 combine a lizard man with a hawk.  Boy, he's ugly.
 ~
 11 0 -300 S
-31 1
+32 1
 -20 20 15
 ! 0 0 0 7 18 0 0
 #9613
@@ -3307,7 +3311,7 @@ The broken one is a tragic survivor of a magical experiment to try and
 combine a lizard man with a hawk.  Boy, he's ugly.
 ~
 11 0 -300 S
-28 1
+29 1
 -20 15 20
 ! 0 0 0 7 18 0 0
 #9614
@@ -3320,7 +3324,7 @@ The broken one is a tragic survivor of a magical experiment to try and
 the other broken ones in this clearing.
 ~
 11 0 -300 S
-40 1
+41 1
 -25 20 25
 ! 0 0 0 7 6402 0 0
 #9615
@@ -3332,7 +3336,7 @@ The baby hippogriff, although no where near full size, shows the distinct
 features of its race: the head and wings of an eagle, and the body of a horse.
 ~
 3 524288 200 S
-27 2
+26 2
 -10 15 10
 ! 0 0 0 7 2304 0 0
 #9616
@@ -3344,7 +3348,7 @@ The hippogriff is an eerie mix of eagle (head and wings) and horse (body).
 It doesn't look too pleased to see you!
 ~
 11 524288 300 S
-31 0
+30 0
 -25 20 20
 ! 0 0 0 7 3330 0 0
 #9617
@@ -3356,7 +3360,7 @@ The tree is old, withered, and stunted.  It appears to almost have a sort
 of face on its bark.
 ~
 3 0 -200 S
-27 0
+26 0
 -20 10 10
 ! 0 0 0 7 5152 0 0
 #9618
@@ -3368,7 +3372,7 @@ The tree is old, withered, and stunted.  It appears to almost have a sort
 of face on its bark.
 ~
 3 0 -200 S
-32 0
+31 0
 -30 25 40
 ! 0 0 0 7 5156 0 0
 #9619
@@ -3405,7 +3409,7 @@ A mix of lion (body) and human (torso and head) the Wemic stands at around
 black mane.
 ~
 67 0 250 S
-30 1
+31 1
 -20 50 15
 ! 0 0 0 7 6786 0 0
 #9622
@@ -3437,7 +3441,7 @@ Ymass is truely an evil priest.  Banished to this cabin many years ago, he set
 to his own body, in an attempt to boost his powers.
 ~
 3145751 2176 -900 S
-83 1
+82 1
 -100 90 100
 ! 0 0 0 7 24568 1081344 16
 >act_prog p opens the trapdoor.~
@@ -3495,7 +3499,7 @@ The centaur, a mix of horse (back legs) and human (head; arms; torso) is
 small, and loos to be about one year old.
 ~
 71 32768 300 S
-22 1
+23 1
 -15 15 10
 ! 0 0 0 7 2096 0 0
 #9628
@@ -3532,7 +3536,7 @@ The manscorpian, as its name suggests, is a mix of scorpian (lower body) and
 of man (upper body).  It looks pretty big, and pretty angry to see you!
 ~
 3145829 512 -230 S
-51 1
+50 1
 -55 50 50
 ! 0 0 0 7 7044 0 8
 #9631
@@ -3564,7 +3568,7 @@ The manscorpian, as its name suggests, is a mix of scorpian (lower body) and
 of man (upper body).  It looks pretty big, and pretty angry to see you!
 ~
 3145797 512 -330 S
-53 1
+52 1
 -40 50 55
 ! 0 0 0 7 8020 0 0
 >act_prog p opens the door.~
@@ -3580,7 +3584,7 @@ The King's aid stands here, looking powerful.
 The aid is an old, corrupt cleric, employed to protect the King if attacked.
 ~
 3145731 512 -400 S
-43 1
+44 1
 -60 60 55
 ! 0 0 0 7 6998 0 8
 #0

@@ -1866,6 +1866,10 @@ D1
 ~
 ^overgrowth~
 385 -1 16898
+D3
+~
+~
+0 0 7328
 S
 #0
 #MOBILES
@@ -1906,7 +1910,7 @@ The night gaunt stands here, offering refreshments.
 ~
 ~
 131153 280641 -1000 S
-6 1
+5 1
 -1500 700 0
 ! 0 0 0 7 0 0 0
 #16843
@@ -1916,7 +1920,7 @@ A shapely acolyte smiles enticingly at you through blood red lips.
 ~
 ~
 75 25212 -1000 S
-95 2
+94 2
 -1400 650 460
 ! 0 0 0 7 29710 0 0
 #16819
@@ -1955,7 +1959,7 @@ This is the queen of the giant bees.  She is about 6 feet long, and her
 stinger looks poised to strike.  Maybe now would be a good time to retreat?
 ~
 107 524840 0 S
-102 2
+103 2
 -1200 700 180
 ! 0 0 0 7 26638 0 16
 #16815
@@ -1995,7 +1999,7 @@ The harpy looks back at you, her beady eyes burning with hatred and malice.
 flesh from your body.
 ~
 134217851 524800 -500 S
-80 2
+81 2
 -900 300 300
 ! 0 0 0 7 24590 65536 0
 #16809
@@ -2024,7 +2028,7 @@ Standing at nearly 7 feet tall, and clad in glowing red armor, The
 death magic, and NOBODY can stand against me and live!'
 ~
 67 640 -1 S
-109 1
+110 1
 -1250 700 700
 ! 0 0 0 7 24590 256 0
 #16821
@@ -2037,7 +2041,7 @@ This wizen old man hobbles along the road, seemingly on the verge of collaps.
 appraising look of a weapons expert...Maybe he is more than he seems?
 ~
 193 0 0 S
-11 1
+10 1
 0 0 0
 ! 0 0 0 7 0 0 0
 #16825
@@ -2051,7 +2055,7 @@ The huge form of the troll hulks over you, howling with rage.  "How DARE you
 snarl at you he grabs a spiked club and swings it down towards your head!
 ~
 111 512 -500 S
-98 1
+99 1
 -1300 500 390
 ! 0 0 0 7 26638 0 8
 #16851
@@ -2081,7 +2085,7 @@ The doorman is standing here, welcoming visitors.
 ~
 ~
 67 0 0 S
-9 1
+8 1
 0 0 0
 ! 0 0 0 7 0 0 0
 #16802
@@ -2091,7 +2095,7 @@ A guardian of clan DarkBlade is standing here, glaring at you.
 ~
 ~
 1 0 0 S
-27 1
+28 1
 0 0 0
 ! 0 0 0 7 0 0 0
 #16882
@@ -2134,7 +2138,7 @@ rainbow dragon~
 ~
 ~
 132619 540732 500 S
-107 1
+108 1
 -1100 700 700
 ! 0 0 0 7 30990 0 16
 #16803
@@ -2154,7 +2158,7 @@ paladia mors~
 ~
 ~
 131083 533052 0 S
-104 1
+105 1
 -1300 500 500
 ! 0 0 0 7 28686 0 0
 #16806
@@ -2175,7 +2179,7 @@ The statue of the Elder Dragon known as @@dAr@@Wcad@@des
 ~
 ~
 131083 8828 0 S
-99 1
+98 1
 -1400 620 610
 ! 0 0 0 7 29710 0 16
 #16808
