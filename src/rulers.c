@@ -131,7 +131,8 @@ void load_rulers( void )
   if ( ( rulersfp = fopen( rulers_file_name, "r" ) ) == NULL )
   {
     bug( "Load rulers Table: fopen", 0 );
-    perror( "failed open of rulers_table.dat in load_rulers_table" );
+    bug( "failed open of rulers_table.dat in load_rulers_table",0 );
+    return;
   }
   else 
   {

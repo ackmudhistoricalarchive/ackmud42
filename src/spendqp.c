@@ -86,10 +86,13 @@ void load_brands( void )
   sprintf( buf, "Loading %s\n\r", brands_file_name);
   monitor_chan( buf, MONITOR_CLAN );
 
+  bug( buf, 0);
+
   if ( ( brandsfp = fopen( brands_file_name, "r" ) ) == NULL )
   {
     bug( "Load brands Table: fopen", 0 );
-    perror( "failed open of brands_table.dat in load_brands_table" );
+    bug( "failed open of brands_table.dat in load_brands_table",0 );
+    return;
   }
   else 
   {

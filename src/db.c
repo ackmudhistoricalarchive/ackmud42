@@ -924,7 +924,8 @@ void load_bans( void )
   if ( ( bansfp = fopen( bans_file_name, "r" ) ) == NULL )
   {
     bug( "Load bans Table: fopen", 0 );
-    perror( "failed open of bans_table.dat in load_bans_table" );
+    bug( "failed open of bans_table.dat in load_bans_table", 0 );
+    return;
   }
   else 
   {

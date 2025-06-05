@@ -2333,3 +2333,404 @@
 [*****] BUG: Load bans Table: fopen
 [*****] BUG: load_quest_object : Invalid object vnum 18189.
 [*****] BUG: load_quest_object : Invalid object vnum 18189.
+[*****] BUG: load_quest_object : Invalid object vnum 18182.
+[*****] BUG: load_quest_object : Invalid object vnum 18188.
+[*****] BUG: load_quest_object : Invalid object vnum 18190.
+[*****] BUG: load_quest_object : Invalid object vnum 18188.
+[*****] BUG: load_quest_object : Invalid object vnum 18189.
+[*****] BUG: load_quest_object : Invalid object vnum 18181.
+[*****] BUG: load_quest_object : Invalid object vnum 18192.
+[*****] BUG: load_quest_object : Invalid object vnum 18189.
+[*****] BUG: load_quest_object : Invalid object vnum 18181.
+[*****] BUG: load_quest_object : Invalid object vnum 18191.
+[*****] BUG: load_quest_object : Invalid object vnum 18191.
+[*****] BUG: load_quest_object : Invalid object vnum 18192.
+[*****] BUG: load_quest_object : Invalid object vnum 18184.
+[*****] BUG: load_quest_object : Invalid object vnum 18186.
+[*****] BUG: load_quest_object : Invalid object vnum 18188.
+[*****] BUG: load_quest_object : Invalid object vnum 18191.
+[*****] BUG: load_quest_object : Invalid object vnum 18188.
+[*****] BUG: load_quest_object : Invalid object vnum 18191.
+[*****] BUG: load_quest_object : Invalid object vnum 18184.
+[*****] BUG: load_quest_object : Invalid object vnum 18181.
+[*****] BUG: load_quest_object : Invalid object vnum 18182.
+[*****] BUG: load_quest_object : Invalid object vnum 18187.
+[*****] BUG: load_quest_object : Invalid object vnum 18190.
+[*****] BUG: load_quest_object : Invalid object vnum 18189.
+[*****] BUG: load_quest_object : Invalid object vnum 18185.
+[*****] BUG: load_quest_object : Invalid object vnum 18189.
+[*****] BUG: load_quest_object : Invalid object vnum 18181.
+[*****] BUG: load_quest_object : Invalid object vnum 18190.
+[*****] BUG: load_quest_object : Invalid object vnum 18183.
+[*****] BUG: load_quest_object : Invalid object vnum 18188.
+[*****] BUG: load_quest_object : Invalid object vnum 18190.
+[*****] BUG: load_quest_object : Invalid object vnum 18184.
+[*****] BUG: load_quest_object : Invalid object vnum 18182.
+[*****] BUG: load_quest_object : Invalid object vnum 18181.
+[*****] BUG: load_quest_object : Invalid object vnum 18189.
+[*****] BUG: load_quest_object : Invalid object vnum 18192.
+[*****] BUG: load_quest_object : Invalid object vnum 18192.
+[*****] BUG: load_quest_object : Invalid object vnum 18191.
+[*****] BUG: load_quest_object : Invalid object vnum 18192.
+[*****] BUG: load_quest_object : Invalid object vnum 18181.
+[*****] BUG: load_quest_object : Invalid object vnum 18192.
+[*****] BUG: load_quest_object : Invalid object vnum 18182.
+[*****] BUG: load_quest_object : Invalid object vnum 18181.
+[*****] BUG: load_quest_object : Invalid object vnum 18191.
+[*****] BUG: load_quest_object : Invalid object vnum 18188.
+[*****] BUG: load_quest_object : Invalid object vnum 18191.
+[*****] BUG: load_quest_object : Invalid object vnum 18191.
+[*****] BUG: load_quest_object : Invalid object vnum 18191.
+[*****] BUG: load_quest_object : Invalid object vnum 18188.
+[*****] BUG: load_quest_object : Invalid object vnum 18184.
+[*****] BUG: load_quest_object : Invalid object vnum 18185.
+[*****] BUG: load_quest_object : Invalid object vnum 18189.
+[*****] BUG: load_quest_object : Invalid object vnum 18187.
+[*****] BUG: load_quest_object : Invalid object vnum 18186.
+[*****] BUG: load_quest_object : Invalid object vnum 18185.
+[*****] BUG: load_quest_object : Invalid object vnum 18181.
+[*****] BUG: load_quest_object : Invalid object vnum 18182.
+[*****] BUG: load_quest_object : Invalid object vnum 18187.
+[*****] BUG: load_quest_object : Invalid object vnum 18182.
+[*****] BUG: load_quest_object : Invalid object vnum 18191.
+[*****] BUG: load_quest_object : Invalid object vnum 18187.
+[*****] BUG: load_quest_object : Invalid object vnum 18181.
+[*****] BUG: load_quest_object : Invalid object vnum 18185.
+[*****] BUG: load_quest_object : Invalid object vnum 18183.
+[*****] BUG: load_quest_object : Invalid object vnum 18192.
+[*****] BUG: load_quest_object : Invalid object vnum 18191.
+[*****] BUG: load_quest_object : Invalid object vnum 18186.
+[*****] BUG: load_quest_object : Invalid object vnum 18181.
+[*****] BUG: load_quest_object : Invalid object vnum 18189.
+[*****] BUG: load_quest_object : Invalid object vnum 18181.
+[*****] BUG: load_quest_object : Invalid object vnum 18188.
+[*****] BUG: load_quest_object : Invalid object vnum 18191.
+[*****] BUG: load_quest_object : Invalid object vnum 18192.
+[*****] BUG: load_quest_object : Invalid object vnum 18192.
+[*****] BUG: load_quest_object : Invalid object vnum 18187.
+[*****] BUG: load_quest_object : Invalid object vnum 18189.
+[*****] BUG: load_quest_object : Invalid object vnum 18185.
+[*****] BUG: load_quest_object : Invalid object vnum 18192.
+[*****] BUG: load_quest_object : Invalid object vnum 18191.
+[*****] BUG: load_quest_object : Invalid object vnum 18189.
+[*****] BUG: load_quest_object : Invalid object vnum 18192.
+[*****] BUG: load_quest_object : Invalid object vnum 18184.
+[*****] BUG: load_quest_object : Invalid object vnum 18191.
+[*****] BUG: load_quest_object : Invalid object vnum 18183.
+[*****] BUG: load_quest_object : Invalid object vnum 18186.
+[*****] BUG: load_quest_object : Invalid object vnum 18192.
+[*****] BUG: load_quest_object : Invalid object vnum 18190.
+[*****] BUG: load_quest_object : Invalid object vnum 18188.
+[*****] BUG: load_quest_object : Invalid object vnum 18186.
+[*****] BUG: load_quest_object : Invalid object vnum 18189.
+[*****] BUG: load_quest_object : Invalid object vnum 18189.
+[*****] BUG: load_quest_object : Invalid object vnum 18182.
+[*****] BUG: load_quest_object : Invalid object vnum 18181.
+[*****] BUG: load_quest_object : Invalid object vnum 18191.
+[*****] BUG: load_quest_object : Invalid object vnum 18191.
+[*****] BUG: load_quest_object : Invalid object vnum 18186.
+[*****] BUG: load_quest_object : Invalid object vnum 18191.
+[*****] BUG: load_quest_object : Invalid object vnum 18192.
+[*****] BUG: load_quest_object : Invalid object vnum 18184.
+[*****] BUG: load_quest_object : Invalid object vnum 18192.
+[*****] BUG: load_quest_object : Invalid object vnum 18182.
+[*****] BUG: load_quest_object : Invalid object vnum 18188.
+[*****] BUG: load_quest_object : Invalid object vnum 18187.
+[*****] BUG: load_quest_object : Invalid object vnum 18182.
+[*****] BUG: load_quest_object : Invalid object vnum 18190.
+[*****] BUG: load_quest_object : Invalid object vnum 18184.
+[*****] BUG: load_quest_object : Invalid object vnum 18190.
+[*****] BUG: load_quest_object : Invalid object vnum 18185.
+[*****] BUG: load_quest_object : Invalid object vnum 18189.
+[*****] BUG: load_quest_object : Invalid object vnum 18182.
+[*****] BUG: load_quest_object : Invalid object vnum 18186.
+[*****] BUG: load_quest_object : Invalid object vnum 18182.
+[*****] BUG: load_quest_object : Invalid object vnum 18187.
+[*****] BUG: load_quest_object : Invalid object vnum 18187.
+[*****] BUG: load_quest_object : Invalid object vnum 18183.
+[*****] BUG: load_quest_object : Invalid object vnum 18188.
+[*****] BUG: load_quest_object : Invalid object vnum 18189.
+[*****] BUG: load_quest_object : Invalid object vnum 18191.
+[*****] BUG: load_quest_object : Invalid object vnum 18183.
+[*****] BUG: load_quest_object : Invalid object vnum 18182.
+[*****] BUG: load_quest_object : Invalid object vnum 18188.
+[*****] BUG: load_quest_object : Invalid object vnum 18181.
+[*****] BUG: load_quest_object : Invalid object vnum 18191.
+[*****] BUG: load_quest_object : Invalid object vnum 18185.
+[*****] BUG: load_quest_object : Invalid object vnum 18191.
+[*****] BUG: load_quest_object : Invalid object vnum 18189.
+[*****] BUG: load_quest_object : Invalid object vnum 18182.
+[*****] BUG: load_quest_object : Invalid object vnum 18181.
+[*****] BUG: load_quest_object : Invalid object vnum 18183.
+[*****] BUG: load_quest_object : Invalid object vnum 18185.
+[*****] BUG: load_quest_object : Invalid object vnum 18189.
+[*****] BUG: load_quest_object : Invalid object vnum 18184.
+[*****] BUG: load_quest_object : Invalid object vnum 18184.
+[*****] BUG: Load_mobiles: # not found.
+[*****] BUG: Loading Mobiles in db.c
+[*****] BUG: Load_mobiles: # not found.
+[*****] BUG: Loading Mobiles in db.c
+[*****] BUG: Load_mobiles: # not found.
+[*****] BUG: Loading Mobiles in db.c
+[*****] BUG: Load_mobiles: # not found.
+[*****] BUG: Loading Mobiles in db.c
+[*****] BUG: Load_mobiles: # not found.
+[*****] BUG: Loading Mobiles in db.c
+[*****] BUG: Load_objects: # not found.
+[*****] BUG: Loading Objects in db.c
+[*****] BUG: Fread_number: looking for a digit, found a A.
+[*****] BUG: Error in fread_number
+[*****] BUG: Get_room_index: bad vnum 16000.
+[*****] BUG: Bad exit vnum 16000 in room 3966
+[*****] BUG: Load marks Table: fopen
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Get_room_index: bad vnum 16000.
+[*****] BUG: Bad exit vnum 16000 in room 3966
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Get_room_index: bad vnum 16000.
+[*****] BUG: Bad exit vnum 16000 in room 3966
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Get_room_index: bad vnum 16000.
+[*****] BUG: Bad exit vnum 16000 in room 3966
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: failed open of bans_table.dat in load_bans_table
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: failed open of bans_table.dat in load_bans_table
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: failed open of bans_table.dat in load_bans_table
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: failed open of bans_table.dat in load_bans_table
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: failed open of bans_table.dat in load_bans_table
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: failed open of bans_table.dat in load_bans_table
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: failed open of bans_table.dat in load_bans_table
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: failed open of bans_table.dat in load_bans_table
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: failed open of bans_table.dat in load_bans_table
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: failed open of bans_table.dat in load_bans_table
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: failed open of bans_table.dat in load_bans_table
+[*****] BUG: Fread_string: EOF
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: failed open of bans_table.dat in load_bans_table
+[*****] BUG: Load rulers Table: fopen
+[*****] BUG: failed open of rulers_table.dat in load_rulers_table
+[*****] BUG: Loading ../data/brands.lst
+
+[*****] BUG: Load brands Table: fopen
+[*****] BUG: failed open of brands_table.dat in load_brands_table
+[*****] BUG: load_quest_object : Invalid object vnum 18183.
+[*****] BUG: Get_room_index: bad vnum 16000.
+[*****] BUG: Bad exit vnum 16000 in room 3966
+[*****] BUG: Load bans Table: fopen
+[*****] BUG: failed open of bans_table.dat in load_bans_table
+[*****] BUG: Load rulers Table: fopen
+[*****] BUG: failed open of rulers_table.dat in load_rulers_table
+[*****] BUG: Loading ../data/brands.lst
+
+[*****] BUG: Load brands Table: fopen
+[*****] BUG: failed open of brands_table.dat in load_brands_table
+[*****] BUG: load_quest_object : Invalid object vnum 18182.
