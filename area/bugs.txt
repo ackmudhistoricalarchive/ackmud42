@@ -5665,3 +5665,4 @@
 [*****] BUG: load_quest_object : Invalid object vnum 18181.
 [*****] BUG: load_quest_object : Invalid object vnum 18182.
 [*****] BUG: load_quest_object : Invalid object vnum 18189.
+[*****] BUG: load_quest_object : Invalid object vnum 18181.
