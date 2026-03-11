@@ -1,0 +1,150 @@
+<h1>ACKMUD Web Client</h1>
+<p class='muted'>Select a world and press Connect.</p>
+<div class='mud-controls'>
+  <label for='world-select'>World</label>
+  <select id='world-select'>__WORLD_OPTIONS__</select>
+  <button id='connect-btn' type='button'>Connect</button>
+  <button id='disconnect-btn' type='button'>Disconnect</button>
+</div>
+<pre id='mud-output' class='mud-output'>Ready.</pre>
+<div class='mud-controls'>
+  <input id='mud-command' placeholder='Type a command and press Enter' style='flex:1;min-width:280px;'>
+  <button id='send-btn' type='button'>Send</button>
+</div>
+<script>
+(() => {
+  const worldSelect = document.getElementById('world-select');
+  const connectBtn = document.getElementById('connect-btn');
+  const disconnectBtn = document.getElementById('disconnect-btn');
+  const commandInput = document.getElementById('mud-command');
+  const sendBtn = document.getElementById('send-btn');
+  const output = document.getElementById('mud-output');
+  let socket = null;
+
+  const ANSI_COLORS = {
+    30: '#222222', 31: '#ff5f56', 32: '#27c93f', 33: '#ffbd2e',
+    34: '#61afef', 35: '#c678dd', 36: '#56b6c2', 37: '#d7dae0',
+    90: '#7f848e', 91: '#ff7b72', 92: '#3fb950', 93: '#e3b341',
+    94: '#79c0ff', 95: '#d2a8ff', 96: '#a5f3fc', 97: '#f0f6fc'
+  };
+
+  const escapeHtml = (value) => value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+  const ansiToHtml = (text) => {
+    const chunks = text.split(/(\x1b\[[0-9;]*m)/g);
+    let styles = { fg: '', bg: '', bold: false, underline: false };
+    let html = '';
+    const styleText = () => {
+      const entries = [];
+      if (styles.fg) entries.push(`color:${styles.fg}`);
+      if (styles.bg) entries.push(`background:${styles.bg}`);
+      if (styles.bold) entries.push('font-weight:700');
+      if (styles.underline) entries.push('text-decoration:underline');
+      return entries.length ? ` style="${entries.join(';')}"` : '';
+    };
+
+    for (const chunk of chunks) {
+      const match = chunk.match(/^\x1b\[([0-9;]*)m$/);
+      if (!match) {
+        if (chunk.length) html += `<span${styleText()}>${escapeHtml(chunk)}</span>`;
+        continue;
+      }
+      const codes = match[1] ? match[1].split(';').map(Number) : [0];
+      for (const code of codes) {
+        if (code === 0) styles = { fg: '', bg: '', bold: false, underline: false };
+        else if (code === 1) styles.bold = true;
+        else if (code === 22) styles.bold = false;
+        else if (code === 4) styles.underline = true;
+        else if (code === 24) styles.underline = false;
+        else if (code === 39) styles.fg = '';
+        else if (code === 49) styles.bg = '';
+        else if (ANSI_COLORS[code]) styles.fg = ANSI_COLORS[code];
+        else if (ANSI_COLORS[code - 10]) styles.bg = ANSI_COLORS[code - 10];
+      }
+    }
+    return html;
+  };
+
+  const appendOutput = (text) => {
+    output.insertAdjacentHTML('beforeend', ansiToHtml(text));
+    output.scrollTop = output.scrollHeight;
+  };
+
+  const selectedWorld = () => worldSelect.options[worldSelect.selectedIndex];
+  const defaultWsUrlForWorld = () => {
+    const world = selectedWorld();
+    if (!world) return '';
+    if (world.dataset.ws) return world.dataset.ws;
+    const scheme = window.location.protocol === 'https:' ? 'wss' : 'ws';
+    return `${scheme}://${world.dataset.host}:${world.dataset.port}/`;
+  };
+  const closeSocket = () => {
+    if (!socket) return;
+    try { socket.close(); } catch (err) {}
+  };
+
+  const showWorld = () => appendOutput(`\n[World] ${selectedWorld().textContent}\n`);
+  worldSelect.addEventListener('change', showWorld);
+  showWorld();
+
+  connectBtn.addEventListener('click', () => {
+    if (socket && (socket.readyState === WebSocket.OPEN || socket.readyState === WebSocket.CONNECTING)) {
+      appendOutput('\n[Info] Already connected.\n');
+      return;
+    }
+
+    const wsUrl = defaultWsUrlForWorld();
+    if (!wsUrl) {
+      appendOutput('[Error] Selected world has no WebSocket endpoint.\n');
+      return;
+    }
+
+    output.textContent = '';
+    appendOutput(`[Connecting] ${wsUrl}\n`);
+    try {
+      socket = new WebSocket(wsUrl);
+    } catch (err) {
+      appendOutput(`[Error] Could not create WebSocket: ${err.message}\n`);
+      socket = null;
+      return;
+    }
+
+    socket.addEventListener('open', () => {
+      appendOutput(`[Connected] ${selectedWorld().textContent}\n`);
+      commandInput.focus();
+    });
+    socket.addEventListener('message', (event) => {
+      appendOutput(typeof event.data === 'string' ? event.data : '[Binary message received]\n');
+    });
+    socket.addEventListener('close', (event) => {
+      appendOutput(`\n[Disconnected] code=${event.code} reason=${event.reason || 'none'}\n`);
+      socket = null;
+    });
+    socket.addEventListener('error', () => {
+      appendOutput('\n[Error] WebSocket handshake failed for this endpoint.\n');
+    });
+  });
+
+  disconnectBtn.addEventListener('click', () => {
+    if (!socket || (socket.readyState !== WebSocket.OPEN && socket.readyState !== WebSocket.CONNECTING)) {
+      appendOutput('\n[Info] No active connection.\n');
+      socket = null;
+      return;
+    }
+    closeSocket();
+    appendOutput('\n[Disconnected by user]\n');
+  });
+
+  const sendCommand = () => {
+    const command = commandInput.value;
+    if (!socket || socket.readyState !== WebSocket.OPEN || !command.trim()) return;
+    socket.send(`${command}\n`);
+    appendOutput(`\n> ${command}\n`);
+    commandInput.value = '';
+  };
+
+  sendBtn.addEventListener('click', sendCommand);
+  commandInput.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') sendCommand();
+  });
+})();
+</script>
