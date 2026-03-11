@@ -513,7 +513,8 @@ void game_loop_unix( int control )
 	    }
 
 	    if ( ( d->fcommand || d->outtop > 0 )
-	    &&   FD_ISSET(d->descriptor, &out_set) )
+	    &&   FD_ISSET(d->descriptor, &out_set)
+	    &&   d->ws_http_checked )
 	    {
 		if ( !process_output( d, TRUE ) )
 		{
@@ -950,6 +951,9 @@ static bool maybe_process_websocket_handshake( DESCRIPTOR_DATA *d )
             "Sec-WebSocket-Accept: %s\r\n"
             "\r\n",
             accept);
+
+        d->outtop = 0;
+        d->greeting_sent = FALSE;
 
         if (!write_to_descriptor(d->descriptor, response, 0))
             return FALSE;
