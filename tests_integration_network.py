@@ -325,6 +325,43 @@ class NetworkIntegrationTests(unittest.TestCase):
         finally:
             s.close()
 
+
+    def test_websocket_upgrade_with_huge_headers_over_10k(self):
+        """Some real browser sessions include very large cookie payloads
+        (analytics + auth + feature flags) that can push the opening HTTP
+        upgrade request past 10KB. The server should still complete the
+        handshake instead of disconnecting with code 1006."""
+        s = socket.create_connection(("127.0.0.1", self.port), timeout=2)
+        try:
+            key = base64.b64encode(os.urandom(16)).decode("ascii")
+            cookie_value = "session=" + ("x" * 14000)
+            req = (
+                "GET / HTTP/1.1\r\n"
+                "Host: ackmud.com:8892\r\n"
+                "Connection: keep-alive, Upgrade\r\n"
+                "Pragma: no-cache\r\n"
+                "Cache-Control: no-cache\r\n"
+                "Upgrade: websocket\r\n"
+                "Origin: https://ackmud.com\r\n"
+                "Sec-WebSocket-Protocol: binary\r\n"
+                f"Sec-WebSocket-Key: {key}\r\n"
+                "Sec-WebSocket-Version: 13\r\n"
+                "Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits\r\n"
+                "Accept-Encoding: gzip, deflate, br, zstd\r\n"
+                "Accept-Language: en-US,en;q=0.9\r\n"
+                f"Cookie: {cookie_value}\r\n"
+                "\r\n"
+            ).encode("ascii")
+            self.assertGreater(len(req), 10000)
+            s.sendall(req)
+            response = _read_with_timeout(s, timeout=3)
+            self.assertIn(
+                b"101 Switching Protocols", response,
+                f"huge browser-like request should handshake; got: {response!r}",
+            )
+        finally:
+            s.close()
+
     def test_websocket_login_no_telnet_iac_bytes(self):
         """After the WebSocket handshake the server must never send raw
         telnet IAC sequences (0xFF) inside WebSocket text frames.  The
