@@ -349,5 +349,126 @@ class NetworkIntegrationTests(unittest.TestCase):
             s.close()
 
 
+    def test_websocket_header_overflow_does_not_crash_server(self):
+        """When accumulated HTTP upgrade headers reach the inbuf overflow
+        threshold (sizeof(inbuf)-10 = 2550 bytes) the server must disconnect
+        gracefully rather than crashing via a NULL d->character dereference.
+        Before the fix, any request whose headers filled inbuf between 2550
+        and 2558 bytes and did NOT yet contain the \\r\\n\\r\\n terminator
+        would cause the overflow check to fire on the next game tick and
+        crash the server with a SIGSEGV, dropping all active connections."""
+        # Build a request whose headers are exactly 2550 bytes without the
+        # terminating \\r\\n\\r\\n so the first read leaves the buffer in the
+        # danger zone.  We then send the remainder (including \\r\\n\\r\\n)
+        # in a second write after a tick boundary.
+        key = base64.b64encode(os.urandom(16)).decode("ascii")
+        prefix = (
+            "GET / HTTP/1.1\r\n"
+            "Host: ackmud.com:8892\r\n"
+            "Connection: Upgrade\r\n"
+            "Upgrade: websocket\r\n"
+            f"Sec-WebSocket-Key: {key}\r\n"
+            "Sec-WebSocket-Version: 13\r\n"
+            "Cookie: x="
+        )
+        # Fill the cookie value so that prefix + value reaches 2550 bytes
+        # (the overflow threshold).  We stop short of \r\n\r\n deliberately.
+        filler_len = 2550 - len(prefix)
+        if filler_len < 1:
+            self.skipTest("prefix already exceeds overflow threshold")
+        part1 = (prefix + "a" * filler_len).encode("ascii")
+        part2 = "\r\n\r\n".encode("ascii")
+
+        self.assertEqual(len(part1), 2550)
+
+        s = socket.create_connection(("127.0.0.1", self.port), timeout=2)
+        try:
+            s.sendall(part1)
+            # Sleep past a game tick so the server processes the partial
+            # read and the overflow check fires on the NEXT call.
+            time.sleep(0.2)
+            s.sendall(part2)
+            response = _read_with_timeout(s, timeout=3)
+            # The server should either complete the handshake or disconnect
+            # cleanly.  The critical property is that it does NOT crash —
+            # verified by checking that a subsequent fresh connection still
+            # gets a valid response.
+        finally:
+            s.close()
+
+        # Confirm the server is still alive by making a new connection.
+        s2 = socket.create_connection(("127.0.0.1", self.port), timeout=2)
+        try:
+            key2 = base64.b64encode(os.urandom(16)).decode("ascii")
+            req2 = (
+                "GET / HTTP/1.1\r\n"
+                "Host: localhost\r\n"
+                "Upgrade: websocket\r\n"
+                "Connection: Upgrade\r\n"
+                f"Sec-WebSocket-Key: {key2}\r\n"
+                "Sec-WebSocket-Version: 13\r\n"
+                "\r\n"
+            ).encode("ascii")
+            s2.sendall(req2)
+            resp2 = _read_with_timeout(s2, timeout=3)
+            self.assertIn(
+                b"101 Switching Protocols", resp2,
+                "Server crashed after the overflow condition; subsequent "
+                f"connection did not get a valid handshake: {resp2!r}",
+            )
+        finally:
+            s2.close()
+
+    def test_websocket_close_frame_roundtrip(self):
+        """After a successful WebSocket handshake the server must respond to a
+        client Close frame (opcode 0x8) with a raw Close frame — NOT with the
+        Close bytes wrapped inside a Text frame.  Before the fix, the pong and
+        close senders used write_to_descriptor() which adds a WS text-frame
+        header when ws_active is TRUE, producing a double-framed response that
+        browsers reject."""
+        s = socket.create_connection(("127.0.0.1", self.port), timeout=2)
+        try:
+            key = base64.b64encode(os.urandom(16)).decode("ascii")
+            req = (
+                "GET / HTTP/1.1\r\n"
+                "Host: localhost\r\n"
+                "Upgrade: websocket\r\n"
+                "Connection: Upgrade\r\n"
+                f"Sec-WebSocket-Key: {key}\r\n"
+                "Sec-WebSocket-Version: 13\r\n"
+                "\r\n"
+            ).encode("ascii")
+            s.sendall(req)
+            response = _read_with_timeout(s, timeout=3)
+            self.assertIn(b"101 Switching Protocols", response)
+
+            # Drain the greeting frame(s).
+            _read_with_timeout(s, timeout=1)
+
+            # Send a masked Close frame (opcode 0x8, no payload).
+            mask = os.urandom(4)
+            close_frame = bytes([0x88, 0x80]) + mask  # FIN|Close, masked, len=0
+            s.sendall(close_frame)
+
+            # Server must respond with a Close frame (first byte 0x88),
+            # not a Text frame (0x81) wrapping Close bytes.
+            s.settimeout(3)
+            try:
+                resp = s.recv(16)
+            except socket.timeout:
+                resp = b""
+            # Either the server sent a close frame or closed the connection.
+            # If it sent data, the first byte must be 0x88 (close frame).
+            if resp:
+                self.assertEqual(
+                    resp[0], 0x88,
+                    f"Server responded to Close frame with opcode "
+                    f"0x{resp[0]:02x} instead of 0x88 (Close); "
+                    f"likely double-framed: {resp!r}",
+                )
+        finally:
+            s.close()
+
+
 if __name__ == "__main__":
     unittest.main()

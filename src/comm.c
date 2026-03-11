@@ -990,12 +990,42 @@ static bool maybe_process_websocket_handshake( DESCRIPTOR_DATA *d )
     }
 }
 
+static bool ws_write_raw( int desc, const unsigned char *data, int len )
+{
+    int iStart;
+    int nWrite;
+    for ( iStart = 0; iStart < len; iStart += nWrite )
+    {
+        int nBlock = UMIN( len - iStart, 4096 );
+        nWrite = write( desc, data + iStart, nBlock );
+        if ( nWrite < 0 )
+        {
+            if ( errno == EWOULDBLOCK || errno == EAGAIN )
+            {
+                int retries;
+                for ( retries = 0; retries < 20; retries++ )
+                {
+                    usleep( 10000 );
+                    nWrite = write( desc, data + iStart, nBlock );
+                    if ( nWrite >= 0 )
+                        break;
+                    if ( errno != EWOULDBLOCK && errno != EAGAIN )
+                        break;
+                }
+            }
+            if ( nWrite < 0 )
+                return FALSE;
+        }
+    }
+    return TRUE;
+}
+
 static bool websocket_send_close( DESCRIPTOR_DATA *d )
 {
     unsigned char frame[2];
     frame[0] = 0x88;
     frame[1] = 0;
-    return write_to_descriptor(d->descriptor, (char *)frame, 2);
+    return ws_write_raw(d->descriptor, frame, 2);
 }
 
 static bool websocket_decode_frames( DESCRIPTOR_DATA *d, const unsigned char *data, int data_len )
@@ -1054,7 +1084,7 @@ static bool websocket_decode_frames( DESCRIPTOR_DATA *d, const unsigned char *da
             frame[1] = (unsigned char)plen;
             for (i = 0; i < (unsigned long long)plen; i++)
                 frame[2 + (int)i] = data[pos + (int)i] ^ mask[i % 4];
-            if (!write_to_descriptor(d->descriptor, (char *)frame, 2 + plen))
+            if (!ws_write_raw(d->descriptor, frame, 2 + plen))
                 return FALSE;
         }
         else if (opcode == 0x1 || opcode == 0x0)
@@ -1342,11 +1372,23 @@ bool read_from_descriptor( DESCRIPTOR_DATA *d )
     iStart = strlen(d->inbuf);
     if ( iStart >= sizeof(d->inbuf) - 10 )
     {
+        if ( !d->ws_http_checked )
+        {
+            /* Buffer overflow during WebSocket HTTP header accumulation.
+             * d->character is NULL at this point, so log conservatively
+             * and close the connection without crashing. */
+            sprintf( log_buf, "%s WebSocket header overflow", d->host );
+            log_string( log_buf );
+            return FALSE;
+        }
         sprintf( log_buf, "%s input overflow!", d->host );
         log_string( log_buf );
-        sprintf( log_buf, "input overflow by %s (%s)",
-           d->character->name, d->host );
-        monitor_chan( log_buf, MONITOR_CONNECT );
+        if ( d->character != NULL )
+        {
+            sprintf( log_buf, "input overflow by %s (%s)",
+               d->character->name, d->host );
+            monitor_chan( log_buf, MONITOR_CONNECT );
+        }
         write_to_descriptor( d->descriptor,
             "\n\r SPAMMING IS RUDE, BYE BYE! \n\r", 0 );
         return FALSE;
@@ -1370,7 +1412,7 @@ bool read_from_descriptor( DESCRIPTOR_DATA *d )
 
             if (!d->ws_http_checked)
             {
-                if (iStart + nRead >= (int)sizeof(d->inbuf) - 1)
+                if (iStart + nRead >= (int)sizeof(d->inbuf))
                     return FALSE;
                 memcpy(d->inbuf + iStart, readbuf, nRead + 1);
                 iStart += nRead;
