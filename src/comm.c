@@ -499,9 +499,7 @@ void game_loop_unix( int control )
 	/*
 	 * Protocol grace period: give new connections time for the
 	 * browser to send a WebSocket upgrade request before assuming
-	 * telnet.  Don't send the greeting here -- wait until data
-	 * actually arrives so we can still detect a late WebSocket
-	 * upgrade even after grace expires.
+	 * telnet and sending the greeting.
 	 */
 	for ( d = first_desc; d != NULL; d = d->next )
 	{
@@ -513,6 +511,7 @@ void game_loop_unix( int control )
 		continue;
 	    }
 	    d->ws_http_checked = TRUE;
+	    maybe_send_greeting(d);
 	}
 
 	/*
