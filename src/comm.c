@@ -730,7 +730,11 @@ static int maybe_strip_proxy_prefix( DESCRIPTOR_DATA *d, char *readbuf, int nRea
         return nRead;
 
     if (d->ws_fragment_len + nRead > d->ws_fragment_size)
+    {
+        if (d->ws_fragment_len == 0)
+            return nRead;
         return -1;
+    }
 
     memcpy(d->ws_fragment + d->ws_fragment_len, readbuf, nRead);
     d->ws_fragment_len += nRead;
