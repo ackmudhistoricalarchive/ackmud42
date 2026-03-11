@@ -40,6 +40,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <strings.h>
 #include <ctype.h>
 #include <errno.h>
 #include <time.h>
@@ -127,6 +128,7 @@ static void maybe_send_greeting args( ( DESCRIPTOR_DATA *d ) );
 static bool maybe_process_websocket_handshake args( ( DESCRIPTOR_DATA *d ) );
 static bool websocket_decode_frames args( ( DESCRIPTOR_DATA *d, const unsigned char *data, int data_len ) );
 static bool websocket_send_close args( ( DESCRIPTOR_DATA *d ) );
+static char *ws_find_header args( ( char *headers, const char *header_name ) );
 
 
 /*
@@ -739,9 +741,39 @@ static void maybe_send_greeting( DESCRIPTOR_DATA *d )
     d->greeting_sent = TRUE;
 }
 
+static char *ws_find_header( char *headers, const char *header_name )
+{
+    char *line = headers;
+    size_t header_len = strlen(header_name);
+
+    while (line != NULL && *line != '\0')
+    {
+        char *next = strstr(line, "\n");
+        char *line_end = (next != NULL) ? next : line + strlen(line);
+        char *colon = memchr(line, ':', line_end - line);
+
+        if (colon != NULL)
+        {
+            size_t name_len = (size_t)(colon - line);
+            while (name_len > 0 && isspace((unsigned char)line[name_len - 1]))
+                name_len--;
+
+            if (name_len == header_len && strncasecmp(line, header_name, header_len) == 0)
+                return colon + 1;
+        }
+
+        if (next == NULL)
+            break;
+        line = next + 1;
+    }
+
+    return NULL;
+}
+
 static bool maybe_process_websocket_handshake( DESCRIPTOR_DATA *d )
 {
     char *header_end;
+    int header_ending_len = 4;
 
     if (d->ws_http_checked)
         return TRUE;
@@ -749,16 +781,20 @@ static bool maybe_process_websocket_handshake( DESCRIPTOR_DATA *d )
     if (strncmp(d->inbuf, "GET ", 4) != 0)
     {
         d->ws_http_checked = TRUE;
-        maybe_send_greeting(d);
         return TRUE;
     }
 
     header_end = strstr(d->inbuf, "\r\n\r\n");
     if (header_end == NULL)
+    {
+        header_end = strstr(d->inbuf, "\n\n");
+        header_ending_len = 2;
+    }
+    if (header_end == NULL)
         return TRUE;
 
     {
-        char *key_pos = strstr(d->inbuf, "Sec-WebSocket-Key:");
+        char *key_pos = ws_find_header(d->inbuf, "Sec-WebSocket-Key");
         char *key_end;
         char key[256];
         char combined[512];
@@ -770,12 +806,17 @@ static bool maybe_process_websocket_handshake( DESCRIPTOR_DATA *d )
         if (key_pos == NULL)
             return FALSE;
 
-        key_pos += strlen("Sec-WebSocket-Key:");
         while (*key_pos == ' ' || *key_pos == '\t')
             key_pos++;
 
-        key_end = strstr(key_pos, "\r\n");
-        if (key_end == NULL || key_end - key_pos >= (int)sizeof(key))
+        key_end = strstr(key_pos, "\n");
+        if (key_end == NULL)
+            key_end = header_end;
+
+        while (key_end > key_pos && (key_end[-1] == '\r' || key_end[-1] == ' ' || key_end[-1] == '\t'))
+            key_end--;
+
+        if (key_end <= key_pos || key_end - key_pos >= (int)sizeof(key))
             return FALSE;
 
         strncpy(key, key_pos, key_end - key_pos);
@@ -800,7 +841,7 @@ static bool maybe_process_websocket_handshake( DESCRIPTOR_DATA *d )
         d->ws_active = TRUE;
         d->ws_http_checked = TRUE;
 
-        header_len = (int)((header_end + 4) - d->inbuf);
+        header_len = (int)((header_end + header_ending_len) - d->inbuf);
         memmove(d->inbuf, d->inbuf + header_len, strlen(d->inbuf + header_len) + 1);
 
         maybe_send_greeting(d);
