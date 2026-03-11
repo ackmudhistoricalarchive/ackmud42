@@ -707,6 +707,12 @@ struct  descriptor_data
     int                 flags;
     int                 childpid;     /* Child process id */
     time_t		timeout;
+    bool                ws_active;
+    bool                ws_http_checked;
+    bool                greeting_sent;
+    char *              ws_fragment;
+    int                 ws_fragment_len;
+    int                 ws_fragment_size;
 };
 
 #define DESC_FLAG_PASSTHROUGH 1     /* Used when data is being passed to */
