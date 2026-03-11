@@ -128,6 +128,7 @@ static void maybe_send_greeting args( ( DESCRIPTOR_DATA *d ) );
 static bool maybe_process_websocket_handshake args( ( DESCRIPTOR_DATA *d ) );
 static bool websocket_decode_frames args( ( DESCRIPTOR_DATA *d, const unsigned char *data, int data_len ) );
 static bool websocket_send_close args( ( DESCRIPTOR_DATA *d ) );
+static int maybe_strip_proxy_prefix args( ( DESCRIPTOR_DATA *d, char *readbuf, int nRead ) );
 static char *ws_find_header args( ( char *headers, const char *header_name ) );
 
 
@@ -717,6 +718,85 @@ static int ws_base64_encode(const unsigned char *in, int in_len, char *out, int 
     return o;
 }
 
+static int maybe_strip_proxy_prefix( DESCRIPTOR_DATA *d, char *readbuf, int nRead )
+{
+    static const unsigned char proxy_v2_sig[12] = {
+        0x0d, 0x0a, 0x0d, 0x0a, 0x00, 0x0d, 0x0a, 0x51, 0x55, 0x49, 0x54, 0x0a
+    };
+    const char *proxy_v1 = "PROXY ";
+
+    if (nRead <= 0)
+        return nRead;
+
+    if (d->ws_fragment_len + nRead > d->ws_fragment_size)
+        return -1;
+
+    memcpy(d->ws_fragment + d->ws_fragment_len, readbuf, nRead);
+    d->ws_fragment_len += nRead;
+
+    for (;;)
+    {
+        int len = d->ws_fragment_len;
+
+        if (len <= 0)
+            return 0;
+
+        if (len < 12 && memcmp(d->ws_fragment, proxy_v2_sig, len) == 0)
+            return 0;
+
+        if (len >= 12 && memcmp(d->ws_fragment, proxy_v2_sig, 12) == 0)
+        {
+            if (len < 16)
+                return 0;
+
+            {
+                int addr_len = ((unsigned char)d->ws_fragment[14] << 8)
+                    | (unsigned char)d->ws_fragment[15];
+                int total_len = 16 + addr_len;
+
+                if (len < total_len)
+                    return 0;
+
+                memmove(d->ws_fragment, d->ws_fragment + total_len, len - total_len);
+                d->ws_fragment_len = len - total_len;
+                continue;
+            }
+        }
+
+        if (len < 6)
+        {
+            if (strncmp(d->ws_fragment, proxy_v1, len) == 0)
+                return 0;
+            break;
+        }
+
+        if (strncmp(d->ws_fragment, proxy_v1, 6) == 0)
+        {
+            int i;
+            for (i = 0; i < len; i++)
+            {
+                if (d->ws_fragment[i] == '\n')
+                {
+                    i++;
+                    memmove(d->ws_fragment, d->ws_fragment + i, len - i);
+                    d->ws_fragment_len = len - i;
+                    break;
+                }
+            }
+            if (i >= len)
+                return 0;
+            continue;
+        }
+
+        break;
+    }
+
+    memcpy(readbuf, d->ws_fragment, d->ws_fragment_len);
+    nRead = d->ws_fragment_len;
+    d->ws_fragment_len = 0;
+    return nRead;
+}
+
 static void maybe_send_greeting( DESCRIPTOR_DATA *d )
 {
     char buf[MAX_STRING_LENGTH];
@@ -778,8 +858,44 @@ static bool maybe_process_websocket_handshake( DESCRIPTOR_DATA *d )
     if (d->ws_http_checked)
         return TRUE;
 
+    for (;;)
+    {
+        if (d->inbuf[0] == '\r' || d->inbuf[0] == '\n')
+        {
+            memmove(d->inbuf, d->inbuf + 1, strlen(d->inbuf));
+            continue;
+        }
+
+        if (strncasecmp(d->inbuf, "PROXY ", 6) == 0)
+        {
+            char *proxy_end = strstr(d->inbuf, "\r\n");
+            int proxy_end_len = 2;
+
+            if (proxy_end == NULL)
+            {
+                proxy_end = strstr(d->inbuf, "\n");
+                proxy_end_len = 1;
+            }
+
+            if (proxy_end == NULL)
+                return TRUE;
+
+            memmove(d->inbuf, proxy_end + proxy_end_len,
+                strlen(proxy_end + proxy_end_len) + 1);
+            continue;
+        }
+
+        break;
+    }
+
+    if (strlen(d->inbuf) < 4)
+        return TRUE;
+
     if (strncmp(d->inbuf, "GET ", 4) != 0)
     {
+        if (strstr(d->inbuf, "\n") == NULL && strstr(d->inbuf, "\r") == NULL)
+            return TRUE;
+
         d->ws_http_checked = TRUE;
         return TRUE;
     }
@@ -1210,6 +1326,13 @@ bool read_from_descriptor( DESCRIPTOR_DATA *d )
         nRead = read( d->descriptor, readbuf, sizeof(readbuf) - 1 );
         if ( nRead > 0 )
         {
+            if (!d->ws_http_checked && iStart == 0)
+            {
+                nRead = maybe_strip_proxy_prefix(d, readbuf, nRead);
+                if (nRead <= 0)
+                    continue;
+            }
+
             readbuf[nRead] = '\0';
 
             if (!d->ws_http_checked)
