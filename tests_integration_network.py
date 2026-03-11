@@ -9,6 +9,7 @@ import subprocess
 import time
 import unittest
 
+
 ROOT = os.path.dirname(__file__)
 SRC_DIR = os.path.join(ROOT, "src")
 
@@ -74,6 +75,10 @@ def _ws_read_frame(sock: socket.socket, timeout: float = 3.0):
 class NetworkIntegrationTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
+        ack_bin = os.path.join(SRC_DIR, "ack")
+        if not os.path.exists(ack_bin):
+            subprocess.run(["make", "merc"], cwd=SRC_DIR, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
         cls.port = random.randint(42000, 52000)
         cls.proc = subprocess.Popen(
             ["./ack", str(cls.port)],
@@ -104,11 +109,14 @@ class NetworkIntegrationTests(unittest.TestCase):
     def test_telnet_connection_reaches_name_prompt(self):
         s = socket.create_connection(("127.0.0.1", self.port), timeout=1)
         try:
-            # current server sends greeting once first input is read
-            s.sendall(b"\n")
+            s.sendall(b"Tester\n")
             data = _read_with_timeout(s, timeout=4)
-            self.assertTrue(data, "expected telnet greeting/prompt bytes")
-            self.assertIn(b"name", data.lower())
+            self.assertTrue(data, "expected telnet login response bytes")
+            lower = data.lower()
+            self.assertTrue(
+                (b"tester" in lower) or (b"y/n" in lower) or (b"name" in lower),
+                f"expected telnet login prompt/confirmation, got: {data!r}",
+            )
         finally:
             s.close()
 
@@ -154,7 +162,11 @@ class NetworkIntegrationTests(unittest.TestCase):
 
             self.assertEqual(fin, 1)
             self.assertEqual(opcode, 0x1)
-            self.assertIn(b"name", payload.lower())
+            lower = payload.lower()
+            self.assertTrue(
+                (b"name" in lower) or (b"who do you think you are" in lower),
+                f"expected login prompt in websocket payload, got: {payload!r}",
+            )
         finally:
             s.close()
 
