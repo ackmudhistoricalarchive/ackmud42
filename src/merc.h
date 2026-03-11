@@ -69,7 +69,7 @@ typedef unsigned char                   bool;
 #define MAX_STRING_LENGTH        8192
 #define MSL			MAX_STRING_LENGTH
 #define MAX_INPUT_LENGTH          640
-#define MAX_DESCRIPTOR_INPUT_LENGTH (16 * MAX_INPUT_LENGTH)
+#define MAX_DESCRIPTOR_INPUT_LENGTH (64 * MAX_INPUT_LENGTH)
 #define MAX_AREAS                 200
 #define MAX_VNUM 32767
 
