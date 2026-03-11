@@ -120,6 +120,26 @@ class NetworkIntegrationTests(unittest.TestCase):
         finally:
             s.close()
 
+    def test_websocket_upgrade_with_proxy_prefix_line(self):
+        s = socket.create_connection(("127.0.0.1", self.port), timeout=1)
+        try:
+            key = base64.b64encode(os.urandom(16)).decode("ascii")
+            req = (
+                "PROXY TCP4 203.0.113.10 127.0.0.1 50000 8892\r\n"
+                "GET / HTTP/1.1\r\n"
+                "Host: localhost\r\n"
+                "Upgrade: websocket\r\n"
+                "Connection: Upgrade\r\n"
+                f"Sec-WebSocket-Key: {key}\r\n"
+                "Sec-WebSocket-Version: 13\r\n"
+                "\r\n"
+            ).encode("ascii")
+            s.sendall(req)
+            response = _read_with_timeout(s, timeout=3)
+            self.assertIn(b"101 Switching Protocols", response)
+        finally:
+            s.close()
+
     def test_websocket_upgrade_and_text_roundtrip(self):
         s = socket.create_connection(("127.0.0.1", self.port), timeout=1)
         try:

@@ -778,6 +778,36 @@ static bool maybe_process_websocket_handshake( DESCRIPTOR_DATA *d )
     if (d->ws_http_checked)
         return TRUE;
 
+    for (;;)
+    {
+        if (d->inbuf[0] == '\r' || d->inbuf[0] == '\n')
+        {
+            memmove(d->inbuf, d->inbuf + 1, strlen(d->inbuf));
+            continue;
+        }
+
+        if (strncasecmp(d->inbuf, "PROXY ", 6) == 0)
+        {
+            char *proxy_end = strstr(d->inbuf, "\r\n");
+            int proxy_end_len = 2;
+
+            if (proxy_end == NULL)
+            {
+                proxy_end = strstr(d->inbuf, "\n");
+                proxy_end_len = 1;
+            }
+
+            if (proxy_end == NULL)
+                return TRUE;
+
+            memmove(d->inbuf, proxy_end + proxy_end_len,
+                strlen(proxy_end + proxy_end_len) + 1);
+            continue;
+        }
+
+        break;
+    }
+
     if (strlen(d->inbuf) < 4)
         return TRUE;
 
