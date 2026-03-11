@@ -1447,6 +1447,7 @@ bool read_from_descriptor( DESCRIPTOR_DATA *d )
                     }
                     /* Not a valid WS upgrade; data already in inbuf.
                      * Send greeting and continue as telnet. */
+                    d->ws_http_checked = TRUE;
                     maybe_send_greeting(d);
                     if (iStart > 0
                         && (d->inbuf[iStart-1] == '\n'
@@ -1493,6 +1494,17 @@ bool read_from_descriptor( DESCRIPTOR_DATA *d )
 void read_from_buffer( DESCRIPTOR_DATA *d )
 {
     int i, j, k;
+
+    /*
+     * Don't consume HTTP upgrade headers as telnet commands.
+     * While ws_http_checked is FALSE the server is still waiting
+     * to determine whether this is a WebSocket or telnet connection;
+     * inbuf may contain a partial HTTP request that spans multiple
+     * game ticks, and reading a line from it here would destroy the
+     * accumulated header data before the handshake can complete.
+     */
+    if ( !d->ws_http_checked )
+	return;
 
     /*
      * Hold horses if pending command already.
