@@ -69,6 +69,7 @@ typedef unsigned char                   bool;
 #define MAX_STRING_LENGTH        8192
 #define MSL			MAX_STRING_LENGTH
 #define MAX_INPUT_LENGTH          640
+#define MAX_DESCRIPTOR_INPUT_LENGTH (16 * MAX_INPUT_LENGTH)
 #define MAX_AREAS                 200
 #define MAX_VNUM 32767
 
@@ -693,7 +694,7 @@ struct  descriptor_data
     short              descriptor;
     short              connected;
     bool                fcommand;
-    char                inbuf           [4 * MAX_INPUT_LENGTH];
+    char                inbuf           [MAX_DESCRIPTOR_INPUT_LENGTH];
     char                incomm          [MAX_INPUT_LENGTH];
     char                inlast          [MAX_INPUT_LENGTH];
     int                 repeat;
