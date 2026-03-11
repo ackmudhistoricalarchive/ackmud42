@@ -778,8 +778,14 @@ static bool maybe_process_websocket_handshake( DESCRIPTOR_DATA *d )
     if (d->ws_http_checked)
         return TRUE;
 
+    if (strlen(d->inbuf) < 4)
+        return TRUE;
+
     if (strncmp(d->inbuf, "GET ", 4) != 0)
     {
+        if (strstr(d->inbuf, "\n") == NULL && strstr(d->inbuf, "\r") == NULL)
+            return TRUE;
+
         d->ws_http_checked = TRUE;
         return TRUE;
     }
