@@ -70,10 +70,22 @@
   };
 
   const selectedWorld = () => worldSelect.options[worldSelect.selectedIndex];
+  const normalizeWsUrl = (rawUrl) => {
+    if (!rawUrl) return '';
+    try {
+      const parsed = new URL(rawUrl, window.location.href);
+      if (window.location.protocol === 'https:' && parsed.protocol === 'ws:') {
+        parsed.protocol = 'wss:';
+      }
+      return parsed.toString();
+    } catch (err) {
+      return rawUrl;
+    }
+  };
   const defaultWsUrlForWorld = () => {
     const world = selectedWorld();
     if (!world) return '';
-    if (world.dataset.ws) return world.dataset.ws;
+    if (world.dataset.ws) return normalizeWsUrl(world.dataset.ws);
     const scheme = window.location.protocol === 'https:' ? 'wss' : 'ws';
     return `${scheme}://${world.dataset.host}:${world.dataset.port}/`;
   };
