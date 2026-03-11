@@ -497,9 +497,11 @@ void game_loop_unix( int control )
 
 
 	/*
-	 * Protocol grace period: give new connections a couple of ticks
-	 * for the browser to send a WebSocket upgrade request before
-	 * assuming telnet and sending the greeting as plain text.
+	 * Protocol grace period: give new connections time for the
+	 * browser to send a WebSocket upgrade request before assuming
+	 * telnet.  Don't send the greeting here -- wait until data
+	 * actually arrives so we can still detect a late WebSocket
+	 * upgrade even after grace expires.
 	 */
 	for ( d = first_desc; d != NULL; d = d->next )
 	{
@@ -511,7 +513,6 @@ void game_loop_unix( int control )
 		continue;
 	    }
 	    d->ws_http_checked = TRUE;
-	    maybe_send_greeting(d);
 	}
 
 	/*
@@ -1246,8 +1247,8 @@ void new_descriptor( int control )
     dnew->ws_active     = FALSE;
     dnew->ws_http_checked = FALSE;
     dnew->greeting_sent = FALSE;
-    dnew->ws_grace      = 2;
-    dnew->ws_fragment_size = 1024;
+    dnew->ws_grace      = 8;
+    dnew->ws_fragment_size = 4096;
     dnew->ws_fragment = getmem( dnew->ws_fragment_size );
     dnew->ws_fragment[0] = '\0';
     dnew->ws_fragment_len = 0;
@@ -1409,14 +1410,62 @@ bool read_from_descriptor( DESCRIPTOR_DATA *d )
             }
             else
             {
-                if (!d->greeting_sent)
+                /*
+                 * Late WebSocket upgrade: if we haven't sent the
+                 * greeting yet and data looks like an HTTP GET
+                 * request, try the WebSocket handshake even though
+                 * the grace period has expired.
+                 */
+                if (!d->greeting_sent && iStart == 0
+                    && nRead >= 4 && strncmp(readbuf, "GET ", 4) == 0)
+                {
+                    d->ws_http_checked = FALSE;
+                    if (nRead >= (int)sizeof(d->inbuf) - 1)
+                        return FALSE;
+                    memcpy(d->inbuf, readbuf, nRead + 1);
+                    iStart = nRead;
+
+                    if (!maybe_process_websocket_handshake(d))
+                        return FALSE;
+
+                    if (d->ws_active)
+                    {
+                        int pending_len = strlen(d->inbuf);
+                        if (pending_len > 0)
+                        {
+                            char pending[4 * MAX_INPUT_LENGTH];
+                            memcpy(pending, d->inbuf, pending_len + 1);
+                            d->inbuf[0] = '\0';
+                            iStart = 0;
+                            if (!websocket_decode_frames(d,
+                                (const unsigned char *)pending, pending_len))
+                                return FALSE;
+                            iStart = strlen(d->inbuf);
+                            if (iStart > 0)
+                                break;
+                        }
+                        continue;
+                    }
+                    /* Not a valid WS upgrade; data already in inbuf.
+                     * Send greeting and continue as telnet. */
                     maybe_send_greeting(d);
-                if ( iStart + nRead >= (int)sizeof(d->inbuf) - 1 )
-                    return FALSE;
-                memcpy( d->inbuf + iStart, readbuf, nRead + 1 );
-                iStart += nRead;
-                if ( d->inbuf[iStart-1] == '\n' || d->inbuf[iStart-1] == '\r' )
-                    break;
+                    if (iStart > 0
+                        && (d->inbuf[iStart-1] == '\n'
+                            || d->inbuf[iStart-1] == '\r'))
+                        break;
+                }
+                else
+                {
+                    if (!d->greeting_sent)
+                        maybe_send_greeting(d);
+                    if ( iStart + nRead >= (int)sizeof(d->inbuf) - 1 )
+                        return FALSE;
+                    memcpy( d->inbuf + iStart, readbuf, nRead + 1 );
+                    iStart += nRead;
+                    if ( d->inbuf[iStart-1] == '\n'
+                        || d->inbuf[iStart-1] == '\r' )
+                        break;
+                }
             }
         }
         else if ( nRead == 0 )
@@ -2206,11 +2255,28 @@ bool write_to_descriptor( int desc, char *txt, int length )
         for ( iStart = 0; iStart < total_len; iStart += nWrite )
         {
             nBlock = UMIN( total_len - iStart, 4096 );
-            if ( ( nWrite = write( desc, frame + iStart, nBlock ) ) < 0 )
-            { 
-                perror( "Write_to_descriptor" ); 
-                free(frame);
-                return FALSE; 
+            nWrite = write( desc, frame + iStart, nBlock );
+            if ( nWrite < 0 )
+            {
+                if ( errno == EWOULDBLOCK || errno == EAGAIN )
+                {
+                    int retries;
+                    for ( retries = 0; retries < 20; retries++ )
+                    {
+                        usleep( 10000 );
+                        nWrite = write( desc, frame + iStart, nBlock );
+                        if ( nWrite >= 0 )
+                            break;
+                        if ( errno != EWOULDBLOCK && errno != EAGAIN )
+                            break;
+                    }
+                }
+                if ( nWrite < 0 )
+                {
+                    perror( "Write_to_descriptor" );
+                    free(frame);
+                    return FALSE;
+                }
             }
         }
 
@@ -2221,9 +2287,26 @@ bool write_to_descriptor( int desc, char *txt, int length )
     for ( iStart = 0; iStart < length; iStart += nWrite )
     {
 	nBlock = UMIN( length - iStart, 4096 );
-	if ( ( nWrite = write( desc, txt + iStart, nBlock ) ) < 0 )
-	    { perror( "Write_to_descriptor" ); return FALSE; }
-    } 
+	nWrite = write( desc, txt + iStart, nBlock );
+	if ( nWrite < 0 )
+	{
+	    if ( errno == EWOULDBLOCK || errno == EAGAIN )
+	    {
+		int retries;
+		for ( retries = 0; retries < 20; retries++ )
+		{
+		    usleep( 10000 );
+		    nWrite = write( desc, txt + iStart, nBlock );
+		    if ( nWrite >= 0 )
+			break;
+		    if ( errno != EWOULDBLOCK && errno != EAGAIN )
+			break;
+		}
+	    }
+	    if ( nWrite < 0 )
+		{ perror( "Write_to_descriptor" ); return FALSE; }
+	}
+    }
 
     return TRUE;
 }
