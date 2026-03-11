@@ -218,6 +218,39 @@ class NetworkIntegrationTests(unittest.TestCase):
             s.close()
 
 
+    def test_websocket_upgrade_headers_split_across_ticks(self):
+        """When the HTTP upgrade request arrives in two separate TCP writes
+        separated by more than one game tick (~125 ms), the server must not
+        treat the first partial read as a telnet command.  Without the fix
+        read_from_buffer() would extract 'GET / HTTP/1.1' from inbuf between
+        ticks, leaving 'Host: ...' at the front of the buffer so the
+        subsequent call to maybe_process_websocket_handshake() would see a
+        non-GET line and mark the connection as telnet instead of WebSocket."""
+        s = socket.create_connection(("127.0.0.1", self.port), timeout=2)
+        try:
+            key = base64.b64encode(os.urandom(16)).decode("ascii")
+            part1 = (
+                "GET / HTTP/1.1\r\n"
+                "Host: localhost\r\n"
+                "Upgrade: websocket\r\n"
+            ).encode("ascii")
+            part2 = (
+                "Connection: Upgrade\r\n"
+                f"Sec-WebSocket-Key: {key}\r\n"
+                "Sec-WebSocket-Version: 13\r\n"
+                "\r\n"
+            ).encode("ascii")
+            s.sendall(part1)
+            # Sleep longer than one game tick (1/PULSE_PER_SECOND = 125 ms)
+            # so the server processes the first chunk before the second arrives.
+            time.sleep(0.2)
+            s.sendall(part2)
+            response = _read_with_timeout(s, timeout=3)
+            self.assertIn(b"101 Switching Protocols", response,
+                          f"split-header handshake failed; got: {response!r}")
+        finally:
+            s.close()
+
     def test_websocket_upgrade_with_large_browser_headers(self):
         """Real browsers send many extra headers (User-Agent, Accept-Language,
         Cookie, Sec-Fetch-*, etc.) that can push the upgrade request well past
