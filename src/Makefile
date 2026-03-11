@@ -12,6 +12,10 @@ O_FILES = act_comm.o act_info.o act_move.o act_obj.o act_wiz.o comm.o const.o \
           social-edit.o vampyre.o werewolf.o \
           mount.o pdelete.o wizutil.o ssm.o scheck.o rulers.o spendqp.o enchant.o
 
+.DEFAULT_GOAL := clean
+
+all: merc integration-tests
+
 merc: $(O_FILES)
 	rm -f ack
 	$(CC) -o ack $(O_FILES) $(L_FLAGS)
@@ -23,9 +27,12 @@ scan: scan.o
 	rm -f scan
 	$(CC) -o scan scan.o $(L_FLAGS)
 
+integration-tests:
+	python3 ../tests_integration_network.py
+
 clean:
 	rm -f $(O_FILES) ack ../area/core
-	ack
+	$(MAKE) all
 
 purge:
 	rm $(O_FILES) ack
