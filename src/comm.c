@@ -1191,6 +1191,13 @@ void new_descriptor( int control )
     /* spec: set initial login timeout */
     dnew->timeout=current_time+180;
 
+    /*
+     * Show the login greeting as soon as the socket is accepted.
+     * This keeps the greeting/order correct for telnet users who
+     * expect to see the banner immediately on connect.
+     */
+    maybe_send_greeting(dnew);
+
     cur_players++;
     if (cur_players > max_players)
      max_players=cur_players;
