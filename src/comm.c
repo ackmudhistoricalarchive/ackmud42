@@ -128,6 +128,7 @@ static void maybe_send_greeting args( ( DESCRIPTOR_DATA *d ) );
 static bool maybe_process_websocket_handshake args( ( DESCRIPTOR_DATA *d ) );
 static bool websocket_decode_frames args( ( DESCRIPTOR_DATA *d, const unsigned char *data, int data_len ) );
 static bool websocket_send_close args( ( DESCRIPTOR_DATA *d ) );
+static int maybe_strip_proxy_prefix args( ( char *readbuf, int nRead ) );
 static char *ws_find_header args( ( char *headers, const char *header_name ) );
 
 
@@ -717,6 +718,42 @@ static int ws_base64_encode(const unsigned char *in, int in_len, char *out, int 
     return o;
 }
 
+static int maybe_strip_proxy_prefix( char *readbuf, int nRead )
+{
+    static const unsigned char proxy_v2_sig[12] = {
+        0x0d, 0x0a, 0x0d, 0x0a, 0x00, 0x0d, 0x0a, 0x51, 0x55, 0x49, 0x54, 0x0a
+    };
+
+    if (nRead >= 16 && memcmp(readbuf, proxy_v2_sig, 12) == 0)
+    {
+        int addr_len = ((unsigned char)readbuf[14] << 8) | (unsigned char)readbuf[15];
+        int total_len = 16 + addr_len;
+
+        if (nRead < total_len)
+            return 0;
+
+        memmove(readbuf, readbuf + total_len, nRead - total_len);
+        return nRead - total_len;
+    }
+
+    if (nRead >= 6 && strncmp(readbuf, "PROXY ", 6) == 0)
+    {
+        int i;
+        for (i = 0; i < nRead; i++)
+        {
+            if (readbuf[i] == '\n')
+            {
+                i++;
+                memmove(readbuf, readbuf + i, nRead - i);
+                return nRead - i;
+            }
+        }
+        return 0;
+    }
+
+    return nRead;
+}
+
 static void maybe_send_greeting( DESCRIPTOR_DATA *d )
 {
     char buf[MAX_STRING_LENGTH];
@@ -1246,6 +1283,13 @@ bool read_from_descriptor( DESCRIPTOR_DATA *d )
         nRead = read( d->descriptor, readbuf, sizeof(readbuf) - 1 );
         if ( nRead > 0 )
         {
+            if (!d->ws_http_checked && iStart == 0)
+            {
+                nRead = maybe_strip_proxy_prefix(readbuf, nRead);
+                if (nRead <= 0)
+                    continue;
+            }
+
             readbuf[nRead] = '\0';
 
             if (!d->ws_http_checked)
