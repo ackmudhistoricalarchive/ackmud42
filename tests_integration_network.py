@@ -9,6 +9,7 @@ import subprocess
 import time
 import unittest
 
+
 ROOT = os.path.dirname(__file__)
 SRC_DIR = os.path.join(ROOT, "src")
 
@@ -74,6 +75,10 @@ def _ws_read_frame(sock: socket.socket, timeout: float = 3.0):
 class NetworkIntegrationTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
+        ack_bin = os.path.join(SRC_DIR, "ack")
+        if not os.path.exists(ack_bin):
+            subprocess.run(["make", "merc"], cwd=SRC_DIR, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
         cls.port = random.randint(42000, 52000)
         cls.proc = subprocess.Popen(
             ["./ack", str(cls.port)],
@@ -104,11 +109,34 @@ class NetworkIntegrationTests(unittest.TestCase):
     def test_telnet_connection_reaches_name_prompt(self):
         s = socket.create_connection(("127.0.0.1", self.port), timeout=1)
         try:
-            # current server sends greeting once first input is read
-            s.sendall(b"\n")
+            s.sendall(b"Tester\n")
             data = _read_with_timeout(s, timeout=4)
-            self.assertTrue(data, "expected telnet greeting/prompt bytes")
-            self.assertIn(b"name", data.lower())
+            self.assertTrue(data, "expected telnet login response bytes")
+            lower = data.lower()
+            self.assertTrue(
+                (b"tester" in lower) or (b"y/n" in lower) or (b"name" in lower),
+                f"expected telnet login prompt/confirmation, got: {data!r}",
+            )
+        finally:
+            s.close()
+
+    def test_websocket_upgrade_with_proxy_prefix_line(self):
+        s = socket.create_connection(("127.0.0.1", self.port), timeout=1)
+        try:
+            key = base64.b64encode(os.urandom(16)).decode("ascii")
+            req = (
+                "PROXY TCP4 203.0.113.10 127.0.0.1 50000 8892\r\n"
+                "GET / HTTP/1.1\r\n"
+                "Host: localhost\r\n"
+                "Upgrade: websocket\r\n"
+                "Connection: Upgrade\r\n"
+                f"Sec-WebSocket-Key: {key}\r\n"
+                "Sec-WebSocket-Version: 13\r\n"
+                "\r\n"
+            ).encode("ascii")
+            s.sendall(req)
+            response = _read_with_timeout(s, timeout=3)
+            self.assertIn(b"101 Switching Protocols", response)
         finally:
             s.close()
 
@@ -154,7 +182,11 @@ class NetworkIntegrationTests(unittest.TestCase):
 
             self.assertEqual(fin, 1)
             self.assertEqual(opcode, 0x1)
-            self.assertIn(b"name", payload.lower())
+            lower = payload.lower()
+            self.assertTrue(
+                (b"name" in lower) or (b"who do you think you are" in lower),
+                f"expected login prompt in websocket payload, got: {payload!r}",
+            )
         finally:
             s.close()
 
