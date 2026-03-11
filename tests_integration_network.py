@@ -218,5 +218,46 @@ class NetworkIntegrationTests(unittest.TestCase):
             s.close()
 
 
+    def test_websocket_upgrade_with_large_browser_headers(self):
+        """Real browsers send many extra headers (User-Agent, Accept-Language,
+        Cookie, Sec-Fetch-*, etc.) that can push the upgrade request well past
+        1024 bytes.  The server must handle this without dropping the data."""
+        s = socket.create_connection(("127.0.0.1", self.port), timeout=1)
+        try:
+            key = base64.b64encode(os.urandom(16)).decode("ascii")
+            req = (
+                "GET / HTTP/1.1\r\n"
+                "Host: ackmud.com:8892\r\n"
+                "Connection: Upgrade\r\n"
+                "Pragma: no-cache\r\n"
+                "Cache-Control: no-cache\r\n"
+                "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/120.0.0.0 Safari/537.36\r\n"
+                "Upgrade: websocket\r\n"
+                "Origin: http://ackmud.com\r\n"
+                f"Sec-WebSocket-Key: {key}\r\n"
+                "Sec-WebSocket-Version: 13\r\n"
+                "Sec-WebSocket-Extensions: permessage-deflate; "
+                "client_max_window_bits\r\n"
+                "Accept-Encoding: gzip, deflate, br, zstd\r\n"
+                "Accept-Language: en-US,en;q=0.9,fr;q=0.8,de;q=0.7,"
+                "ja;q=0.6,zh-CN;q=0.5,zh;q=0.4,ko;q=0.3\r\n"
+                "Sec-Fetch-Dest: websocket\r\n"
+                "Sec-Fetch-Mode: websocket\r\n"
+                "Sec-Fetch-Site: same-origin\r\n"
+                "Cookie: " + "x" * 512 + "\r\n"
+                "\r\n"
+            ).encode("ascii")
+            self.assertGreater(len(req), 1024,
+                               "test request must exceed 1024 bytes")
+            s.sendall(req)
+            response = _read_with_timeout(s, timeout=3)
+            self.assertIn(b"101 Switching Protocols", response,
+                          f"handshake failed; got: {response!r}")
+        finally:
+            s.close()
+
+
 if __name__ == "__main__":
     unittest.main()
