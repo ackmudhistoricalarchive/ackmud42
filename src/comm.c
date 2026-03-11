@@ -1362,7 +1362,7 @@ void close_socket( DESCRIPTOR_DATA *dclose )
 bool read_from_descriptor( DESCRIPTOR_DATA *d )
 {
     int iStart;
-    char readbuf[4 * MAX_INPUT_LENGTH];
+    char readbuf[MAX_DESCRIPTOR_INPUT_LENGTH];
 
     /* Hold horses if pending command already. */
     if ( d->incomm[0] != '\0' )
@@ -1425,7 +1425,7 @@ bool read_from_descriptor( DESCRIPTOR_DATA *d )
                     int pending_len = strlen(d->inbuf);
                     if (pending_len > 0)
                     {
-                        char pending[4 * MAX_INPUT_LENGTH];
+                        char pending[MAX_DESCRIPTOR_INPUT_LENGTH];
                         memcpy(pending, d->inbuf, pending_len + 1);
                         d->inbuf[0] = '\0';
                         iStart = 0;
@@ -1474,7 +1474,7 @@ bool read_from_descriptor( DESCRIPTOR_DATA *d )
                         int pending_len = strlen(d->inbuf);
                         if (pending_len > 0)
                         {
-                            char pending[4 * MAX_INPUT_LENGTH];
+                            char pending[MAX_DESCRIPTOR_INPUT_LENGTH];
                             memcpy(pending, d->inbuf, pending_len + 1);
                             d->inbuf[0] = '\0';
                             iStart = 0;

@@ -290,6 +290,41 @@ class NetworkIntegrationTests(unittest.TestCase):
                           f"handshake failed; got: {response!r}")
         finally:
             s.close()
+
+    def test_websocket_upgrade_with_very_large_cookie_headers(self):
+        """Browser sessions can attach very large Cookie headers. The
+        WebSocket upgrade must still succeed when the initial HTTP request is
+        much larger than the historical 2560-byte inbuf size."""
+        s = socket.create_connection(("127.0.0.1", self.port), timeout=2)
+        try:
+            key = base64.b64encode(os.urandom(16)).decode("ascii")
+            cookie_value = "session=" + ("x" * 7000)
+            req = (
+                "GET / HTTP/1.1\r\n"
+                "Host: ackmud.com:8892\r\n"
+                "Connection: keep-alive, Upgrade\r\n"
+                "Pragma: no-cache\r\n"
+                "Cache-Control: no-cache\r\n"
+                "Upgrade: websocket\r\n"
+                "Origin: https://ackmud.com\r\n"
+                "Sec-WebSocket-Protocol: binary\r\n"
+                f"Sec-WebSocket-Key: {key}\r\n"
+                "Sec-WebSocket-Version: 13\r\n"
+                "Accept-Encoding: gzip, deflate, br\r\n"
+                "Accept-Language: en-US,en;q=0.9\r\n"
+                f"Cookie: {cookie_value}\r\n"
+                "\r\n"
+            ).encode("ascii")
+            self.assertGreater(len(req), 3000)
+            s.sendall(req)
+            response = _read_with_timeout(s, timeout=3)
+            self.assertIn(
+                b"101 Switching Protocols", response,
+                f"large browser-like request should handshake; got: {response!r}",
+            )
+        finally:
+            s.close()
+
     def test_websocket_login_no_telnet_iac_bytes(self):
         """After the WebSocket handshake the server must never send raw
         telnet IAC sequences (0xFF) inside WebSocket text frames.  The
@@ -351,13 +386,12 @@ class NetworkIntegrationTests(unittest.TestCase):
 
     def test_websocket_header_overflow_does_not_crash_server(self):
         """When accumulated HTTP upgrade headers reach the inbuf overflow
-        threshold (sizeof(inbuf)-10 = 2550 bytes) the server must disconnect
+        threshold (sizeof(inbuf)-10 bytes) the server must disconnect
         gracefully rather than crashing via a NULL d->character dereference.
-        Before the fix, any request whose headers filled inbuf between 2550
-        and 2558 bytes and did NOT yet contain the \\r\\n\\r\\n terminator
+        Before the fix, any request whose headers filled inbuf near the overflow boundary and did NOT yet contain the \\r\\n\\r\\n terminator
         would cause the overflow check to fire on the next game tick and
         crash the server with a SIGSEGV, dropping all active connections."""
-        # Build a request whose headers are exactly 2550 bytes without the
+        # Build a request whose headers are exactly (16*640-10) bytes without the
         # terminating \\r\\n\\r\\n so the first read leaves the buffer in the
         # danger zone.  We then send the remainder (including \\r\\n\\r\\n)
         # in a second write after a tick boundary.
@@ -371,15 +405,16 @@ class NetworkIntegrationTests(unittest.TestCase):
             "Sec-WebSocket-Version: 13\r\n"
             "Cookie: x="
         )
-        # Fill the cookie value so that prefix + value reaches 2550 bytes
-        # (the overflow threshold).  We stop short of \r\n\r\n deliberately.
-        filler_len = 2550 - len(prefix)
+        # Fill the cookie value so that prefix + value reaches target_len bytes
+        # (the overflow threshold). We stop short of \r\n\r\n deliberately.
+        target_len = (16 * 640) - 10
+        filler_len = target_len - len(prefix)
         if filler_len < 1:
             self.skipTest("prefix already exceeds overflow threshold")
         part1 = (prefix + "a" * filler_len).encode("ascii")
         part2 = "\r\n\r\n".encode("ascii")
 
-        self.assertEqual(len(part1), 2550)
+        self.assertEqual(len(part1), target_len)
 
         s = socket.create_connection(("127.0.0.1", self.port), timeout=2)
         try:
