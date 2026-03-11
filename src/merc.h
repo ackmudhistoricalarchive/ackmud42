@@ -710,6 +710,7 @@ struct  descriptor_data
     bool                ws_active;
     bool                ws_http_checked;
     bool                greeting_sent;
+    int                 ws_grace;
     char *              ws_fragment;
     int                 ws_fragment_len;
     int                 ws_fragment_size;
