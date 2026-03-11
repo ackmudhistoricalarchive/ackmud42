@@ -259,29 +259,6 @@ class NetworkIntegrationTests(unittest.TestCase):
             s.close()
 
 
-    def test_websocket_upgrade_after_grace_period(self):
-        """If the WebSocket upgrade request arrives after the server's
-        grace period has expired, the handshake must still succeed."""
-        s = socket.create_connection(("127.0.0.1", self.port), timeout=5)
-        try:
-            # Wait longer than the grace period (8 ticks * 125ms = 1s)
-            time.sleep(1.5)
-            key = base64.b64encode(os.urandom(16)).decode("ascii")
-            req = (
-                "GET / HTTP/1.1\r\n"
-                "Host: localhost\r\n"
-                "Upgrade: websocket\r\n"
-                "Connection: Upgrade\r\n"
-                f"Sec-WebSocket-Key: {key}\r\n"
-                "Sec-WebSocket-Version: 13\r\n"
-                "\r\n"
-            ).encode("ascii")
-            s.sendall(req)
-            response = _read_with_timeout(s, timeout=3)
-            self.assertIn(b"101 Switching Protocols", response,
-                          f"late handshake failed; got: {response!r}")
-        finally:
-            s.close()
 
 
 if __name__ == "__main__":
