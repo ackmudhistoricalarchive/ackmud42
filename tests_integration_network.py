@@ -290,8 +290,63 @@ class NetworkIntegrationTests(unittest.TestCase):
                           f"handshake failed; got: {response!r}")
         finally:
             s.close()
+    def test_websocket_login_no_telnet_iac_bytes(self):
+        """After the WebSocket handshake the server must never send raw
+        telnet IAC sequences (0xFF) inside WebSocket text frames.  The
+        echo-off / echo-on commands used during password entry contain
+        IAC bytes which are invalid UTF-8 and cause browsers to drop the
+        connection."""
+        s = socket.create_connection(("127.0.0.1", self.port), timeout=1)
+        try:
+            key = base64.b64encode(os.urandom(16)).decode("ascii")
+            req = (
+                "GET / HTTP/1.1\r\n"
+                "Host: localhost\r\n"
+                "Upgrade: websocket\r\n"
+                "Connection: Upgrade\r\n"
+                f"Sec-WebSocket-Key: {key}\r\n"
+                "Sec-WebSocket-Version: 13\r\n"
+                "\r\n"
+            ).encode("ascii")
+            s.sendall(req)
+            response = _read_with_timeout(s, timeout=3)
+            self.assertIn(b"101 Switching Protocols", response)
 
+            # Consume the greeting frame(s) until we see a name prompt.
+            frames = []
+            parts = response.split(b"\r\n\r\n", 1)
+            leftover = parts[1] if len(parts) == 2 else b""
+            if leftover:
+                # Parse the first server frame from the leftover bytes
+                frames.append(leftover)
 
+            # Read any additional greeting frames
+            greeting_data = _read_with_timeout(s, timeout=2)
+            if greeting_data:
+                frames.append(greeting_data)
+
+            # Send a name that is very unlikely to exist --
+            # the server should respond with a confirmation prompt
+            # rather than a password prompt with IAC echo-off.
+            s.sendall(_ws_masked_text_frame(b"TestWsNoIAC\n"))
+
+            # Read the server's response frames
+            login_data = _read_with_timeout(s, timeout=3)
+
+            # Verify no IAC byte (0xFF) appears anywhere in the raw
+            # data sent by the server.  IAC is never valid UTF-8 and
+            # indicates a telnet command leaked into the WebSocket stream.
+            all_data = b"".join(frames) + (greeting_data or b"") + (login_data or b"")
+            iac_positions = [i for i, b in enumerate(all_data) if b == 0xFF]
+            self.assertEqual(
+                iac_positions, [],
+                f"Server sent telnet IAC byte(s) at position(s) {iac_positions} "
+                f"in WebSocket data stream; raw bytes around first IAC: "
+                f"{all_data[max(0, iac_positions[0]-4):iac_positions[0]+8]!r}"
+                if iac_positions else "No IAC bytes found"
+            )
+        finally:
+            s.close()
 
 
 if __name__ == "__main__":
