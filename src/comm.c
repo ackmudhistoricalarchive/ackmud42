@@ -2285,13 +2285,13 @@ bool write_to_descriptor( int desc, char *txt, int length )
                 if ( nWrite < 0 )
                 {
                     perror( "Write_to_descriptor" );
-                    free(frame);
+                    dispose(frame, total_len);
                     return FALSE;
                 }
             }
         }
 
-        free(frame);
+        dispose(frame, total_len);
         return TRUE;
     }
 
@@ -2644,7 +2644,8 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 
 	    /* Old player */
 	  write_to_buffer( d, "Password: ", 0 );
-	  write_to_buffer( d, echo_off_str, 0 );
+	  if ( !d->ws_active )
+	      write_to_buffer( d, echo_off_str, 0 );
 	  d->connected = CON_GET_OLD_PASSWORD;
 	  return;
 	}
@@ -2695,7 +2696,8 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 	    return;
 	}
 
-	write_to_buffer( d, echo_on_str, 0 );
+	if ( !d->ws_active )
+	    write_to_buffer( d, echo_on_str, 0 );
 
 	if ( check_reconnect( d, ch->name, TRUE ) )
 	    return;
@@ -2733,8 +2735,12 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 	switch ( *argument )
 	{
 	case 'y': case 'Y':
-	    sprintf( buf, "New character.\n\rGive me a password for %s: %s",
-		ch->name, echo_off_str );
+	    if ( d->ws_active )
+		sprintf( buf, "New character.\n\rGive me a password for %s: ",
+		    ch->name );
+	    else
+		sprintf( buf, "New character.\n\rGive me a password for %s: %s",
+		    ch->name, echo_off_str );
 	    write_to_buffer( d, buf, 0 );
 	    d->connected = CON_GET_NEW_PASSWORD;
 	    return;
@@ -2794,7 +2800,8 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 	    d->connected = CON_GET_NEW_PASSWORD;
 	    return;
 	}
-        write_to_buffer( d, echo_on_str, 0 );
+        if ( !d->ws_active )
+            write_to_buffer( d, echo_on_str, 0 );
         show_menu_to(d);
         d->connected = CON_MENU;
         return;
