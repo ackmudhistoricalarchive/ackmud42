@@ -2280,30 +2280,44 @@ bool write_to_descriptor( int desc, char *txt, int length )
         int header_len;
         int total_len;
         unsigned char *frame;
+        char *filtered;
+        int filtered_len;
+        int i, j;
 
-        if (length > 65535)
+        filtered = getmem(length + 1);
+        for (i = 0, j = 0; i < length; i++)
+            if (txt[i] != '\r')
+                filtered[j++] = txt[i];
+        filtered[j] = '\0';
+        filtered_len = j;
+
+        if (filtered_len > 65535)
+        {
+            free(filtered);
             return FALSE;
+        }
 
-        if (length <= 125)
+        if (filtered_len <= 125)
             header_len = 2;
         else
             header_len = 4;
 
-        total_len = header_len + length;
+        total_len = header_len + filtered_len;
         frame = getmem(total_len);
         frame[0] = 0x81;
-        if (length <= 125)
+        if (filtered_len <= 125)
         {
-            frame[1] = (unsigned char)length;
+            frame[1] = (unsigned char)filtered_len;
         }
         else
         {
             frame[1] = 126;
-            frame[2] = (unsigned char)((length >> 8) & 0xFF);
-            frame[3] = (unsigned char)(length & 0xFF);
+            frame[2] = (unsigned char)((filtered_len >> 8) & 0xFF);
+            frame[3] = (unsigned char)(filtered_len & 0xFF);
         }
 
-        memcpy(frame + header_len, txt, length);
+        memcpy(frame + header_len, filtered, filtered_len);
+        free(filtered);
 
         for ( iStart = 0; iStart < total_len; iStart += nWrite )
         {
