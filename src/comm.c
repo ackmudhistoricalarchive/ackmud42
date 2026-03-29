@@ -1141,7 +1141,7 @@ void new_descriptor( int control )
     DESCRIPTOR_DATA *dnew;
     struct sockaddr_in sock;
     int desc;
-    size_t size;
+    socklen_t size;
 
     size = sizeof(sock);
     getsockname( control, (struct sockaddr *) &sock, &size );
