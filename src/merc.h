@@ -2863,7 +2863,7 @@ do { \
   if ( ! (mem) ) \
   { \
     bug("Disposing NULL memory",0); \
-    return; \
+    break; \
   } \
   if (log&&mem_log) log_printf("dispose(%p) from %s:%d", (mem), __FILE__, __LINE__); \
   free((mem)); \
