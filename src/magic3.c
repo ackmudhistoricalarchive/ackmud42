@@ -532,7 +532,10 @@ bool spell_shockshield( int sn, int level, CHAR_DATA *ch, void *vo, OBJ_DATA *ob
     affect_to_char( ch, &af );
 
   GET_FREE( shield, shield_free );
-  shield->name = str_dup( "@@lSHOCK@@N" );		
+  shield->name = str_dup( "@@lSHOCK@@N" );
+  /* Without these the shield expires into sprintf(buf, NULL). */
+  shield->wearoff_room = str_dup( "@@N$n's @@lshield@@N @@yFIZZLES OUT@@N!!!!!" );
+  shield->wearoff_self = str_dup( "@@NYour @@lshield@@N @@yFIZZLES OUT@@N!!!!!" );
   shield->type = SHOCK_SHIELD;	
   shield->harmfull = TRUE;
   shield->attack_dam = number_range( ( level * 2 ), ( level * 4 ) );
@@ -586,7 +589,10 @@ bool spell_shadowshield( int sn, int level, CHAR_DATA *ch, void *vo, OBJ_DATA *o
     affect_to_char( ch, &af );
 
   GET_FREE( shield, shield_free );
-  shield->name = str_dup( "@@dSHADOW@@N" );		
+  shield->name = str_dup( "@@dSHADOW@@N" );
+  /* Without these the shield expires into sprintf(buf, NULL). */
+  shield->wearoff_room = str_dup( "@@N$n's @@dshield@@N @@yFADES AWAY@@N!!!!!" );
+  shield->wearoff_self = str_dup( "@@NYour @@dshield@@N @@yFADES AWAY@@N!!!!!" );
   shield->type = FLAME_SHIELD;	
   shield->harmfull = TRUE;
   shield->attack_dam = number_range( ( level * 2 ), ( level * 4.5 ) );
@@ -640,7 +646,10 @@ bool spell_thoughtshield( int sn, int level, CHAR_DATA *ch, void *vo, OBJ_DATA *
     affect_to_char( ch, &af );
 
   GET_FREE( shield, shield_free );
-  shield->name = str_dup( "@@mTHOUGHT@@N" );		
+  shield->name = str_dup( "@@mTHOUGHT@@N" );
+  /* Without these the shield expires into sprintf(buf, NULL). */
+  shield->wearoff_room = str_dup( "@@N$n's @@mshield@@N @@yDISSIPATES@@N!!!!!" );
+  shield->wearoff_self = str_dup( "@@NYour @@mshield@@N @@yDISSIPATES@@N!!!!!" );
   shield->type = FLAME_SHIELD;	
   shield->harmfull = TRUE;
   shield->attack_dam = number_range( ( level * 2 ), ( level * 4.5 ) );
